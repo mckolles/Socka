@@ -1,0 +1,29 @@
+.postsWrapper{
+  display: inline;
+}
+
+.ava {
+  padding-left: 50px;
+  padding-top: 20px;
+}
+.ava img{
+  height: 48px;
+  width: 48px;
+  border-radius: 60px;
+  vertical-align: middle;
+}
+
+.authorName {
+  display: inline-block;
+  margin-left: 30px;
+  color:#b42da8;
+}
+
+.text{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.images{
+  text-align: center;
+  padding:20px;
+}

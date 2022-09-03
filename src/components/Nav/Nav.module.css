@@ -1,0 +1,36 @@
+/* Навигация */
+
+.nav {
+grid-column-start: 2;
+
+}
+
+.nav img {
+width: 32px;
+width: 32px;
+vertical-align: middle;
+}
+
+.nav a {
+color: #b42da8;
+display: inline-block;
+vertical-align: middle;
+margin-left: 12px;
+text-decoration: none;
+font-size: 1.1rem;
+width: 50%;
+
+}
+
+.nav div {
+margin-bottom: 15px;
+}
+
+.navImg:hover {
+background-color: #222222;
+border-radius: 20px;
+}
+.navWrapper{
+position: sticky;
+top: 120px;
+}

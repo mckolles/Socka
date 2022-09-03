@@ -1,0 +1,17 @@
+/* Общие стили */
+body{
+  background-color: #141414;
+  margin: 0;
+}
+
+/*Контейнер */
+.container {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 7fr 2fr;
+  grid-template-rows: 1fr;
+  grid-gap: 30px;
+  }
+
+
+  

@@ -1,0 +1,103 @@
+/* Основной контент */
+
+.wrapper {
+  border-radius: 10px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 2fr 8fr;
+  grid-template-rows: 1fr 60px 8fr;
+  grid-template-areas:
+    "a d"
+    "i i"
+    "p p";
+}
+
+/* Ава */
+
+.avatar {
+  grid-column-start: 1;
+  border-radius: 10px;
+  grid-area: a;
+}
+
+.img {
+  background-color: #222222;
+  border-radius: 20px;
+  text-align: center;
+  padding: 15px;
+}
+
+.avatar img {
+  width: 200px;
+  height: 200px;
+}
+
+/* Описание */
+.hrShelf {
+  margin: -30px auto 10px;
+  padding: 0;
+  height: 50px;
+  border: none;
+  border-bottom: 1px solid #959392;
+  width: 95%;
+}
+.description {
+  grid-column-start: 2;
+  background-color: #222222;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: 3fr 7fr;
+  height: 234px;
+  grid-area: d;
+}
+.descriptionEl {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.description h1 {
+  color: rgba(252, 252, 252, 0.911);
+  font-size: 1.4rem;
+  margin: 10px;
+}
+
+.data p {
+  color: #cacbcc;
+  text-align: center;
+  margin: 0;
+}
+
+.description h1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+.dataAnswer p {
+  margin: 0;
+}
+
+/* обертки для постов */
+
+.inputPost {
+  grid-area: i;
+  background-color: #222222;
+  border-radius: 20px;
+  
+}
+.inputPost input{
+  text-align: center;
+  background-color: #222222;
+  border: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+}
+
+.inputPost input:focus-visible{
+  outline:#b42da8;
+}
+
+.myPosts {
+  grid-area: p;
+  background-color: #222222;
+  border-radius: 20px;
+}

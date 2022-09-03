@@ -1,0 +1,10 @@
+.profile {
+  display: grid;
+  grid-area: p;
+  background-color: #222222;
+  grid-template-areas: "i i";
+  color: #bdbfc1;
+}
+.profile .main-img img {
+  display: grid;
+}

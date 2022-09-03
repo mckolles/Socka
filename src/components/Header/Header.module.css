@@ -1,0 +1,22 @@
+.header {
+  background-color: #222222;
+  display: grid;
+  grid-template-columns: 2fr 1fr 7fr 2fr;
+  grid-template-rows: 90px;
+  grid-gap: 30px;
+  position: sticky;
+  top: 0;
+  
+  }
+  
+  .headerImg {
+  grid-column-start: 2;
+  }
+  
+  .header img {
+  width: 80px;
+  height: 80px;
+  padding: 5px;
+  }
+
+    
