@@ -1,3 +1,5 @@
+// Импорты + картинки
+
 import React from "react";
 import { NavLink } from "react-router-dom";
 import s from './Nav.module.css';
@@ -8,36 +10,31 @@ import Nicon from '../Nav/img/news-icon.png';
 import Sicon from '../Nav/img/settings-icon.png';
 import Picon from '../Nav/img/profile-icon.png';
 
+// Каждый элемент нава
+
+const NavEl = (props) => {
+  return (
+    <div className={s.navImg}>
+    <img src={props.src} alt="Profile icon"></img>
+      <NavLink to={"/"+props.name}>{props.name}</NavLink>
+    </div>
+  )
+}
+
+// Сам нав
+
 const Nav = () => {
   return (
     <div className={s.nav}>
       <div className={s.navWrapper}>
-      <div className={s.navImg}>
-      <img src={Picon} alt="Profile icon"></img>
-        <NavLink to="/Profile">Profile</NavLink>
-      </div>
-      <div className={s.navImg}>
-      <img src={Dicon} alt="Dialogs icon"></img>
-      <NavLink to="/Dialogs">Dialogs</NavLink>
-      </div>
-      <div className={s.navImg}>
-      <img src={Nicon} alt="News icon"></img>
-      <NavLink to="/News">News</NavLink>
-      </div>
-      <div className={s.navImg}>
-      <img src={Micon} alt="Profile icon"></img>
-      <NavLink to="/Music">Music</NavLink>
-      </div>
-      <div className={s.navImg}>
-      <img src={Sicon} alt="Settings icon"></img>
-      <NavLink to="/Settings">Settings</NavLink>
-      </div>
-      <div className={s.navImg}>
-      <img src={Ficon} alt="Friends icon"></img>
-      <NavLink to="/Friends">Friends</NavLink>
-      </div>
-      </div>
+      <NavEl src={Picon} name="Profile" />
+      <NavEl src={Dicon} name="Dialogs" />
+      <NavEl src={Micon} name="Music" />
+      <NavEl src={Nicon} name="News" />
+      <NavEl src={Sicon} name="Settings" />
+      <NavEl src={Ficon} name="Friends" />
     </div>
+    </div>  
   );
 };
 
