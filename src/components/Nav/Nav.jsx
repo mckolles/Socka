@@ -24,15 +24,19 @@ const NavEl = (props) => {
 // Сам нав
 
 const Nav = () => {
+  let navData=[
+    {src:Picon, name:"Profile" },
+    {src:Dicon, name:"Dialogs" },
+    {src:Micon, name:"Music" },
+    {src:Nicon, name:"News" },
+    {src:Sicon, name:"Settings" },
+    {src:Ficon, name:"Friends" }
+  ]
+  let NavComponent=navData.map((n)=>(<NavEl src={n.src} name={n.name} />))
   return (
     <div className={s.nav}>
       <div className={s.navWrapper}>
-      <NavEl src={Picon} name="Profile" />
-      <NavEl src={Dicon} name="Dialogs" />
-      <NavEl src={Micon} name="Music" />
-      <NavEl src={Nicon} name="News" />
-      <NavEl src={Sicon} name="Settings" />
-      <NavEl src={Ficon} name="Friends" />
+      {NavComponent}
     </div>
     </div>  
   );

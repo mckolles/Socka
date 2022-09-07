@@ -16,7 +16,7 @@ const App = () => {
   return (
     <BrowserRouter>
     <Header /> 
-    <div className="container">
+    <div className="container"> 
       <Nav />
         <Routes>
         <Route path="/Profile" element={<Profile/>} />

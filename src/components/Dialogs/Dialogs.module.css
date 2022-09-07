@@ -1,20 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap');
+
 .diologs{
     background-color: #222222;
     border-radius: 30px;
     margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 70px 8fr;
+    grid-template-rows: 20px 60px;
+    grid-template-areas:
+    "img i"
+    "img m" ;
+    font-family: 'Montserrat', sans-serif;
+   
+}
+
+.wrapper a{
+    text-decoration: none;
+    color: #7b7b7b;
+}
+
+.wrapper a:hover{
+    opacity: 50%;
 }
 
 .dialogsItem{
-    margin: 20px;
+    margin-left: 20px;
     display: inline-block;
+    grid-area: i;
 }
-
-.dialog a{
-    color: rgba(252, 252, 252, 0.911);
-    text-decoration: none;
+.dialogsItem p{
+    color: #e0e2e5;
+    padding: none;
+   
 }
-
 .message{
     margin: 20px;
     display: inline;
+    grid-area: m;
+}
+
+.message p{
+   color: #7b7b7b;
+}
+
+.img img{
+    width: 64px;
+    height: 64px;
+    border-radius: 50px;
+    padding: 10px;
+}
+
+.img{
+    grid-area: img;
 }

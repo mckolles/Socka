@@ -3,7 +3,9 @@ import s from "./Profile.module.css";
 import AvatarProfile from "./profile-avatar.jpg";
 import MyPosts from "./My posts/MyPosts";
 
-const Profile = () => {
+
+const Profile = (props) => {
+  
   return (
     <div className={s.wrapper}>
       <div className={s.avatar}>
@@ -12,11 +14,11 @@ const Profile = () => {
         </div>
         </div>
         <div className={s.description}>
-          <div>
+          <div className={s.descriptionEl}>
+          <div className={s.descriptionH1}>
             <h1>Kolesnikov Nikita</h1>
             <hr  className={s.hrShelf}/>
           </div>
-          <div className={s.descriptionEl}>
           <div className={s.data}>
           <p>Birth Date:</p>
           </div>
@@ -42,8 +44,6 @@ const Profile = () => {
           <input placeholder="Whats new?"  type="text"  />
         </div>
         <div className={s.myPosts}>
-        <MyPosts />
-        <MyPosts />
         <MyPosts />
         </div>
       

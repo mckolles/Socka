@@ -1,5 +1,6 @@
 /* Основной контент */
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/* 7b7b7b e0e2e5 */
 .wrapper {
   border-radius: 10px;
   display: grid;
@@ -10,6 +11,7 @@
     "a d"
     "i i"
     "p p";
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Ава */
@@ -34,15 +36,14 @@
 
 /* Описание */
 .hrShelf {
-  margin: -30px auto 10px;
+  margin: -40px auto 10px;
   padding: 0;
   height: 50px;
   border: none;
-  border-bottom: 1px solid #959392;
+  border-bottom: 1px solid #7b7b7b;
   width: 95%;
 }
 .description {
-  grid-column-start: 2;
   background-color: #222222;
   border-radius: 10px;
   display: grid;
@@ -53,26 +54,35 @@
 .descriptionEl {
   display: grid;
   grid-template-columns: 2fr 2fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 1fr 1fr 1fr;
+  grid-template-areas: 
+  "h h"
+  "p a"
+  "p a"
+  "p a";
 }
-.description h1 {
-  color: rgba(252, 252, 252, 0.911);
-  font-size: 1.4rem;
+.descriptionH1 {
+  color: #e0e2e5;
+  font-size: 0.7rem;
   margin: 10px;
+  grid-area: h;
+}
+
+.descriptionH1 h1{
+  margin-left: 10px;
 }
 
 .data p {
-  color: #cacbcc;
+  color: #7b7b7b;
   text-align: center;
   margin: 0;
+  grid-area: p;
 }
 
-.description h1 {
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
 .dataAnswer p {
   margin: 0;
+  grid-area: a;
+  color: #e0e2e5;
 }
 
 /* обертки для постов */
@@ -90,6 +100,7 @@
   width: 100%;
   height: 100%;
   border-radius: 30px;
+  color: #7b7b7b;
 }
 
 .inputPost input:focus-visible{
