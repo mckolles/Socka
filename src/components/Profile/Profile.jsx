@@ -2,10 +2,21 @@ import React from "react";
 import s from "./Profile.module.css";
 import AvatarProfile from "./profile-avatar.jpg";
 import MyPosts from "./My posts/MyPosts";
+import { addPost } from "../../state";
+import { rerenderEntireTree } from "../..";
+
 
 
 const Profile = (props) => {
-  
+let refTextarea=React.createRef()
+let listnertextarea=()=>{
+  let a=refTextarea.current.value
+  addPost(a)
+  rerenderEntireTree() 
+}
+
+
+
   return (
     <div className={s.wrapper}>
       <div className={s.avatar}>
@@ -40,12 +51,12 @@ const Profile = (props) => {
           </div>
           </div>
         </div>
-        <div className={s.inputPost}>
-          <input placeholder="Whats new?"  type="text"  />
+        <div className={s.inputPost} onCopy={listnertextarea}>
+          <textarea ref={refTextarea} placeholder="Whats new?"  type="text"  />
         </div>
         <div className={s.myPosts}>
-        <MyPosts />
-        </div>
+        <MyPosts profilePage={props.profilePage} />
+        </div>  
       
     </div>
   );

@@ -6,7 +6,7 @@
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 2fr 8fr;
-  grid-template-rows: 1fr 60px 8fr;
+  grid-template-rows: 1fr 60px;
   grid-template-areas:
     "a d"
     "i i"
@@ -93,7 +93,7 @@
   border-radius: 20px;
   
 }
-.inputPost input{
+.inputPost textarea{
   text-align: center;
   background-color: #222222;
   border: none;
@@ -101,9 +101,9 @@
   height: 100%;
   border-radius: 30px;
   color: #7b7b7b;
-}
+} 
 
-.inputPost input:focus-visible{
+.inputPost:focus-visible{
   outline:#b42da8;
 }
 
