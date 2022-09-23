@@ -20,9 +20,10 @@ const App = (props) => {
     <div className="container">   
       <Nav />
         <Routes>
-        <Route path="/Profile" element={<Profile profilePage={props.state.profilePage}
-        listnerTextArea={props.state.listnerTextArea}/>} /> 
-        <Route path="/Dialogs" element={<Dialogs dialogsPage={props.state.dialogsPage}/>} />
+        <Route path="/Profile" element={<Profile profilePage={props.store.getState().profilePage}
+         dispatch={props.dispatch}/>} /> 
+        <Route path="/Dialogs" element={<Dialogs dialogsPage={props.store.getState().dialogsPage}
+         dispatch={props.dispatch}/>} />
         <Route path="/News" element={<Dialogs/>} />
         <Route path="/Music" element={<Dialogs/>} />
         <Route path="/Settings" element={<Dialogs/>} />

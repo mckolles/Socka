@@ -2,19 +2,23 @@ import React from "react";
 import s from "./Profile.module.css";
 import AvatarProfile from "./profile-avatar.jpg";
 import MyPosts from "./My posts/MyPosts";
-import { addPost } from "../../state";
-import { rerenderEntireTree } from "../..";
+import { addPostActionCreator } from "../../store";
+import { updatePostActionCreator } from "../../store";
+
+
 
 
 
 const Profile = (props) => {
-let refTextarea=React.createRef()
-let listnertextarea=()=>{
-  let a=refTextarea.current.value
-  addPost(a)
-  rerenderEntireTree() 
+
+let addPost=(e)=>{
+  props.dispatch(addPostActionCreator())
 }
 
+let updatePost =(e)=>{
+  let message=e.target.value 
+  props.dispatch(updatePostActionCreator(message))
+}
 
 
   return (
@@ -51,11 +55,12 @@ let listnertextarea=()=>{
           </div>
           </div>
         </div>
-        <div className={s.inputPost} onCopy={listnertextarea}>
-          <textarea ref={refTextarea} placeholder="Whats new?"  type="text"  />
+        <div className={s.inputPost} onCopy={addPost}  >
+          <textarea value={props.profilePage.valueProfileInput} type="text" 
+          onChange={updatePost} placeholder="Whats new?" />
         </div>
         <div className={s.myPosts}>
-        <MyPosts profilePage={props.profilePage} />
+        <MyPosts posts={props.profilePage.posts} />
         </div>  
       
     </div>

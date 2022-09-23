@@ -5,7 +5,7 @@ const MyPost = (props) => {
   return (
     <div className={s.postsWrapper}>
       <div className={s.ava}>
-        <img src={props.avaSrc} alt="1"></img>
+        <img src={props.avasrc} alt="1"></img>
         <div className={s.authorName}>
           <p>{props.name}</p>
         </div>
@@ -21,8 +21,8 @@ const MyPost = (props) => {
 };
 
 const MyPosts = (props) => {
-  let postsComponent = props.profilePage.map((p) => (
-    <MyPost avaSrc={props.avaSrc} name={p.name} text={p.text} image={p.image} />
+  let postsComponent = props.posts.map((p) => (
+    <MyPost avaSrc={props.avasrc} name={p.name} text={p.text} image={p.image} />
   ));
   return <div> {postsComponent}</div>;
 };
