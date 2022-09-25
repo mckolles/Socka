@@ -2,8 +2,8 @@ import React from "react";
 import s from "./Profile.module.css";
 import AvatarProfile from "./profile-avatar.jpg";
 import MyPosts from "./My posts/MyPosts";
-import { addPostActionCreator } from "../../store";
-import { updatePostActionCreator } from "../../store";
+import { addPostActionCreator } from "../../Redux/profileReducer";
+import { updatePostActionCreator } from "../../Redux/profileReducer";
 
 
 

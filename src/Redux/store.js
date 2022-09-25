@@ -1,9 +1,8 @@
 // Основные данные
 
-export const addPostActionCreator=(message) => ({type:'ADD-POST'})
-export const updatePostActionCreator=(message) => ({type:'UPDATE-POST',post:message})
-export const updateDiaolgsTextAreActionCreator=(message) => ({type:'UPDATE-DIALOGS-TEXTAREA',post:message})
-export const addDiaolgsTextAreActionCreator=() => ({type:'ADD-DIALOGS-TEXTAREA'})
+import diologsReducer from "./diologsReducer";
+import profileReducer from "./profileReducer";
+
 
 
 let store={
@@ -59,37 +58,9 @@ subscribe(observer) {
 },
 
 dispatch(action){
-  if (action.type ==='ADD-POST'){
-    this.getState().profilePage.posts.push(
-      {
-        avasrc: "https://sun1-86.userapi.com/impg/e0H7e8Mn1PDNrgQFfmCejlHTpuvbfOzrFKfc6w/rsNoB_wMy1o.jpg?size=1317x2160&quality=95&sign=ec024126a5cb967fd03817bb98707f03&type=album",
-        name: "Koles NIkita",
-        text: this.getState().profilePage.valueProfileInput,
-        image:
-          "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
-      },
-    )
-    this.callSubscriber()
-    this.getState().profilePage.valueProfileInput=""
-    this.callSubscriber()
-  } 
-  else if (action.type ==='UPDATE-POST'){
-    this.getState().profilePage.valueProfileInput=action.post;
-    this.callSubscriber();
-  }
-   else if (action.type ==='UPDATE-DIALOGS-TEXTAREA'){
-    this.getState().dialogsPage.valueTextArea=action.post;
-    this.callSubscriber();
-  }
-   else if (action.type ==='ADD-DIALOGS-TEXTAREA'){
-    this.getState().dialogsPage.diologsData.push(
-      { name: "Sveta", id: "1", message: this.getState().dialogsPage.valueTextArea},
-    )
-    this.callSubscriber()
-    this.getState().dialogsPage.valueTextArea=""
-    this.callSubscriber()
-  }
-
+  this.getState().profilePage=profileReducer(this.getState().profilePage,action)
+  this.getState().dialogsPage=diologsReducer(this.getState().dialogsPage,action)
+  this.callSubscriber()
 }
 }
 

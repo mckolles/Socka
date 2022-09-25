@@ -2,8 +2,8 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import { NavLink } from "react-router-dom";
 import ava from "../Profile/profile-avatar.jpg";
-import { updateDiaolgsTextAreActionCreator } from "../../store";
-import { addDiaolgsTextAreActionCreator } from "../../store";
+import { updateDiaolgsTextAreActionCreator } from "../../Redux/diologsReducer";
+import { addDiaolgsTextAreActionCreator } from "../../Redux/diologsReducer";
 
 const DialogsItems = (props) => {
   return (
