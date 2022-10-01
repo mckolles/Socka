@@ -2,8 +2,6 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import { NavLink } from "react-router-dom";
 import ava from "../Profile/profile-avatar.jpg";
-import { updateDiaolgsTextAreActionCreator } from "../../Redux/diologsReducer";
-import { addDiaolgsTextAreActionCreator } from "../../Redux/diologsReducer";
 
 const DialogsItems = (props) => {
   return (
@@ -21,16 +19,16 @@ const DialogsItems = (props) => {
   );
 };
 
-const Dialogs = (props) => {
+const Dialogs = (props) => {  
   let dialog = props.dialogsPage.diologsData.map((d) => (
-    <DialogsItems name={d.name} id={d.id} message={d.message} />
+    <DialogsItems name={d.name} id={d.id} message={d.message} key={d.id} />
   ));
   let updateSms = (e) => {
    let message=e.target.value
-   props.dispatch(updateDiaolgsTextAreActionCreator(message))
+   props.updateSms(message)
   }
   let sendSms = () => {
-   props.dispatch(addDiaolgsTextAreActionCreator())
+   props.sendSms()
     
   }
   

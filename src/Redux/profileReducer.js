@@ -7,6 +7,7 @@ let initialState = {
       text: "lorem ipsum dolor sit amet, consectetur adipiscing",
       image:
         "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
+      id: "1",
     },
     {
       avasrc:
@@ -15,6 +16,7 @@ let initialState = {
       text: "lorem ipsum dolor sit amet, consectetur adipiscing",
       image:
         "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
+      id: "2",
     },
     {
       avasrc: "http://1c-uroki.ru/sites/default/files/arhitect.png",
@@ -22,27 +24,41 @@ let initialState = {
       text: "lorem ipsum dolor sit amet, consectetur adipiscing",
       image:
         "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
+      id: "3",
     },
   ],
   valueProfileInput: "",
 };
 
-const profileReducer = (state=initialState, action) => {
+const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD-POST":
-      state.posts.push({
-        avasrc:
-          "https://sun1-86.userapi.com/impg/e0H7e8Mn1PDNrgQFfmCejlHTpuvbfOzrFKfc6w/rsNoB_wMy1o.jpg?size=1317x2160&quality=95&sign=ec024126a5cb967fd03817bb98707f03&type=album",
-        name: "Koles NIkita",
-        text: state.valueProfileInput,
-        image:
-          "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
-      });
-      state.valueProfileInput = "";
-      return state;
-    case "UPDATE-POST":
-      state.valueProfileInput = action.post;
-      return state;
+    case "ADD-POST": {
+      let stateCopy = {
+        ...state,
+        valueProfileInput: "",
+        posts: [
+          ...state.posts,
+          {
+            avasrc:
+              "https://sun1-86.userapi.com/impg/e0H7e8Mn1PDNrgQFfmCejlHTpuvbfOzrFKfc6w/rsNoB_wMy1o.jpg?size=1317x2160&quality=95&sign=ec024126a5cb967fd03817bb98707f03&type=album",
+            name: "Koles NIkita",
+            text: state.valueProfileInput,
+            image:
+              "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
+            id: "7",
+          },
+        ],
+      };
+
+      return stateCopy;
+    }
+    case "UPDATE-POST": {
+      let stateCopy = { 
+        ...state,
+        valueProfileInput:action.post
+      };
+      return stateCopy;
+    }
     default:
       return state;
   }

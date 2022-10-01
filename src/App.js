@@ -2,34 +2,28 @@
 
 import React from "react";
 import "./App.css";
-import Profile from "./components/Profile/Profile";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
-import Dialogs from "./components/Dialogs/Dialogs";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-
-
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import DialogsContainer from "./components/Dialogs/DiologsContainer";
 
 // Основнная компонента
 const App = (props) => {
-  
   return (
     <BrowserRouter>
-    <Header /> 
-    <div className="container">   
-      <Nav />
+      <Header />
+      <div className="container">
+        <Nav />
         <Routes>
-        <Route path="/Profile" element={<Profile profilePage={props.store.getState().profilePage}
-         dispatch={props.dispatch}/>} /> 
-        <Route path="/Dialogs" element={<Dialogs dialogsPage={props.store.getState().dialogsPage}
-         dispatch={props.dispatch}/>} />
-        <Route path="/News" element={<Dialogs/>} />
-        <Route path="/Music" element={<Dialogs/>} />
-        <Route path="/Settings" element={<Dialogs/>} />
-        <Route path="/Friends" element={<Dialogs/>} />
-        </Routes> 
-    </div>
+          <Route path="/Profile" element={<ProfileContainer />}/>
+          <Route path="/Dialogs" element={<DialogsContainer />}/>
+          <Route path="/News" element={<DialogsContainer />} />
+          <Route path="/Music" element={<DialogsContainer />} />
+          <Route path="/Settings" element={<DialogsContainer />} />
+          <Route path="/Friends" element={<DialogsContainer />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };

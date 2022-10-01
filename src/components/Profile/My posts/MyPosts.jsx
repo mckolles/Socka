@@ -22,7 +22,7 @@ const MyPost = (props) => {
 
 const MyPosts = (props) => {
   let postsComponent = props.posts.map((p) => (
-    <MyPost avaSrc={props.avasrc} name={p.name} text={p.text} image={p.image} />
+    <MyPost avaSrc={props.avasrc} name={p.name} text={p.text} image={p.image} key={p.id} />
   ));
   return <div> {postsComponent}</div>;
 };

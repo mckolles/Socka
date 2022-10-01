@@ -25,14 +25,14 @@ const NavEl = (props) => {
 
 const Nav = () => {
   let navData=[
-    {src:Picon, name:"Profile" },
-    {src:Dicon, name:"Dialogs" },
-    {src:Micon, name:"Music" },
-    {src:Nicon, name:"News" },
-    {src:Sicon, name:"Settings" },
-    {src:Ficon, name:"Friends" }
+    {src:Picon, name:"Profile",id:"1" },
+    {src:Dicon, name:"Dialogs",id:"2" },
+    {src:Micon, name:"Music",id:"3" },
+    {src:Nicon, name:"News" ,id:"4"},
+    {src:Sicon, name:"Settings" ,id:"5"},
+    {src:Ficon, name:"Friends",id:"6" }
   ]
-  let NavComponent=navData.map((n)=>(<NavEl src={n.src} name={n.name} />))
+  let NavComponent=navData.map((n)=>(<NavEl src={n.src} name={n.name} key={n.id}/>))
   return (
     <div className={s.nav}>
       <div className={s.navWrapper}>
