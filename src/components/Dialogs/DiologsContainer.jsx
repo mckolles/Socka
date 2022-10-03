@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { updateDiaolgsTextAreActionCreator } from "../../Redux/diologsReducer";
-import { addDiaolgsTextAreActionCreator } from "../../Redux/diologsReducer";
+import { addDiaolgsAC, updateDiaolgsAC } from "../../Redux/diologsReducer";
+
 import Dialogs from "./Dialogs";
 
 let mapStatetoProps = (state) => {
@@ -11,10 +11,10 @@ return {
 let mapDispatchtoProps = (dispatch) => {
   return {
     updateSms: (message) => {
-      dispatch(updateDiaolgsTextAreActionCreator(message));
+      dispatch(updateDiaolgsAC(message));
     },
     sendSms: () => {
-      dispatch(addDiaolgsTextAreActionCreator());
+      dispatch(addDiaolgsAC());
     },
   };
 };

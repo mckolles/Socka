@@ -12,15 +12,14 @@ let initialState = {
 const diologsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "UPDATE-DIALOGS-TEXTAREA": {
-      let stateCopy = {
+      return {
         ...state,
         valueTextArea: action.post,
       };
 
-      return stateCopy;
     }
     case "ADD-DIALOGS-TEXTAREA": {
-      let stateCopy = {
+      return{
         ...state,
         diologsData: [
           ...state.diologsData,
@@ -29,18 +28,17 @@ const diologsReducer = (state = initialState, action) => {
         valueTextArea: "",
       };
 
-      return stateCopy;
     }
     default:
       return state;
   }
 };
 
-export const updateDiaolgsTextAreActionCreator = (message) => ({
+export const updateDiaolgsAC = (message) => ({
   type: "UPDATE-DIALOGS-TEXTAREA",
   post: message,
 });
-export const addDiaolgsTextAreActionCreator = () => ({
+export const addDiaolgsAC = () => ({
   type: "ADD-DIALOGS-TEXTAREA",
 });
 

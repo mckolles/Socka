@@ -7,6 +7,7 @@ import Nav from "./components/Nav/Nav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DiologsContainer";
+import FriendsContainer from "./components/Friends/FriendsContainer";
 
 // Основнная компонента
 const App = (props) => {
@@ -21,7 +22,7 @@ const App = (props) => {
           <Route path="/News" element={<DialogsContainer />} />
           <Route path="/Music" element={<DialogsContainer />} />
           <Route path="/Settings" element={<DialogsContainer />} />
-          <Route path="/Friends" element={<DialogsContainer />} />
+          <Route path="/Friends" element={<FriendsContainer />} />
         </Routes>
       </div>
     </BrowserRouter>

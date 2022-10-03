@@ -33,7 +33,7 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD-POST": {
-      let stateCopy = {
+      return{
         ...state,
         valueProfileInput: "",
         posts: [
@@ -49,23 +49,20 @@ const profileReducer = (state = initialState, action) => {
           },
         ],
       };
-
-      return stateCopy;
     }
     case "UPDATE-POST": {
-      let stateCopy = { 
+      return{ 
         ...state,
         valueProfileInput:action.post
       };
-      return stateCopy;
     }
     default:
       return state;
   }
 };
 
-export const addPostActionCreator = (message) => ({ type: "ADD-POST" });
-export const updatePostActionCreator = (message) => ({
+export const addPostAC = (message) => ({ type: "ADD-POST" });
+export const updatePostAC = (message) => ({
   type: "UPDATE-POST",
   post: message,
 });
