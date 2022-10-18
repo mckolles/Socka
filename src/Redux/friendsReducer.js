@@ -1,6 +1,9 @@
 let initialState = {
-    friendsData: [
-    ]
+    friendsData: [],
+    pageSize:10,
+    totalUsersCount: 50,
+    currentPage:1,
+
 }
 
   const friendsReducer = (state = initialState, action) => {
@@ -31,11 +34,15 @@ let initialState = {
                 }
             )
         }
-      case "SET-FRIEND": 
-        return {
-            ...state,
-            friendsData: [...state.friendsData,...action.friends]
-        }
+      case "SET-FRIENDS": 
+        return {...state,friendsData:action.friendsData}
+        
+      
+      case "SET-CURRENT-PAGE": 
+        return {...state,currentPage: action.currentPage}
+        
+      case "SET-TOTAL-USERS-COUNT": 
+        return {...state,totalUsersCount:action.totalUsersCount}
 
       default:
         return state;
@@ -50,9 +57,19 @@ let initialState = {
     type: "UNFOLLOW-FRIEND",
     userId
   });
-  export const setFriendsAC = (friends) => ({
-    type: "SET-FRIEND",
-    friends
+  export const setFriendsAC = (friendsData) => ({
+    type: "SET-FRIENDS",
+    friendsData
   });
+  export const setCurrentPageAC = (currentPage) => ({
+    type: "SET-CURRENT-PAGE",
+    currentPage
+  });
+  export const setTotalUsersCountAC = (totalUsersCount) => ({
+    type: "SET-TOTAL-USERS-COUNT",
+    totalUsersCount
+  
+  });
+ 
   
   export default friendsReducer;
