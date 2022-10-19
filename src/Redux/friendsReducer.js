@@ -3,6 +3,7 @@ let initialState = {
     pageSize:10,
     totalUsersCount: 50,
     currentPage:1,
+    isFetching: true
 
 }
 
@@ -43,6 +44,8 @@ let initialState = {
         
       case "SET-TOTAL-USERS-COUNT": 
         return {...state,totalUsersCount:action.totalUsersCount}
+      case "TOGGLE-IS-FETCHING": 
+        return {...state,isFetching:action.isFetching}
 
       default:
         return state;
@@ -68,6 +71,11 @@ let initialState = {
   export const setTotalUsersCountAC = (totalUsersCount) => ({
     type: "SET-TOTAL-USERS-COUNT",
     totalUsersCount
+  
+  });
+  export const setIsFetchingAC = (isFetching) => ({
+    type: "TOGGLE-IS-FETCHING",
+    isFetching
   
   });
  
