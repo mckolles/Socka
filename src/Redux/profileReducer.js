@@ -8,26 +8,10 @@ let initialState = {
       image:
         "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
       id: "1",
-    },
-    {
-      avasrc:
-        "https://sun9-67.userapi.com/impg/lFrjc-CpVikro_MvVi_fl2_EYWHo0KNk06RZCg/Nf_Fj25fixc.jpg?size=1595x2160&quality=95&sign=ce8e008645a499d84503d3a9dea82e17&type=album",
-      name: "Kolesnikov NIkita",
-      text: "lorem ipsum dolor sit amet, consectetur adipiscing",
-      image:
-        "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
-      id: "2",
-    },
-    {
-      avasrc: "http://1c-uroki.ru/sites/default/files/arhitect.png",
-      name: "Koles NIkita",
-      text: "lorem ipsum dolor sit amet, consectetur adipiscing",
-      image:
-        "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
-      id: "3",
-    },
+    }
   ],
   valueProfileInput: "",
+  profile:null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -56,14 +40,21 @@ const profileReducer = (state = initialState, action) => {
         valueProfileInput:action.post
       };
     }
+    case "SET-USER-PROFILE": {
+      return{ 
+        ...state,
+       profile:action.profile
+      };
+    }
     default:
       return state;
   }
 };
 
-export const addPostAC = (message) => ({ type: "ADD-POST" });
-export const updatePostAC = (message) => ({
+export const addPost = (message) => ({ type: "ADD-POST" });
+export const updatePost = (message) => ({
   type: "UPDATE-POST",
   post: message,
 });
+export const setUserProfile = (profile) => ({ type: "SET-USER-PROFILE",profile });
 export default profileReducer;

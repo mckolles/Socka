@@ -52,28 +52,28 @@ let initialState = {
     }
   };
   
-  export const followAC= (userId) => ({
+  export const follow= (userId) => ({
     type: "FOLLOW-FRIEND",
     userId
   });
-  export const unfollowAC = (userId) => ({
+  export const unfollow = (userId) => ({
     type: "UNFOLLOW-FRIEND",
     userId
   });
-  export const setFriendsAC = (friendsData) => ({
+  export const setFriends = (friendsData) => ({
     type: "SET-FRIENDS",
     friendsData
   });
-  export const setCurrentPageAC = (currentPage) => ({
+  export const setCurrentPage = (currentPage) => ({
     type: "SET-CURRENT-PAGE",
     currentPage
   });
-  export const setTotalUsersCountAC = (totalUsersCount) => ({
+  export const setTotalUsersCount = (totalUsersCount) => ({
     type: "SET-TOTAL-USERS-COUNT",
     totalUsersCount
   
   });
-  export const setIsFetchingAC = (isFetching) => ({
+  export const setIsFetching = (isFetching) => ({
     type: "TOGGLE-IS-FETCHING",
     isFetching
   

@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Profile.module.css";
-import AvatarProfile from "./profile-avatar.jpg";
 import MyPosts from "./My posts/MyPosts";
+import Preloader from "../Common/Preloader/Preloader";
 
 const Profile = (props) => {
   let addPost = (e) => {
@@ -13,37 +13,41 @@ const Profile = (props) => {
     props.updatePost(message);
   };
 
+  if(!props.profilePage.profile) {
+      return <Preloader />
+  }
   return (
+   
     <div className={s.wrapper}>
       <div className={s.avatar}>
         <div className={s.img}>
-          <img src={AvatarProfile} alt="avatar" />
+          <img src={props.profilePage.profile.photos.large} alt="avatar" />
         </div>
       </div>
       <div className={s.description}>
         <div className={s.descriptionEl}>
           <div className={s.descriptionH1}>
-            <h1>Kolesnikov Nikita</h1>
+            <h1>{props.profilePage.profile.fullName}</h1>
             <hr className={s.hrShelf} />
           </div>
           <div className={s.data}>
-            <p>Birth Date:</p>
+            <p>Status:</p>
           </div>
           <div className={s.dataAnswer}>
-            <p>04/03/1998</p>
+            <p>{props.profilePage.profile.aboutMe}</p>
           </div>
 
           <div className={s.data}>
-            <p>City:</p>
+            <p>VK:</p>
           </div>
           <div className={s.dataAnswer}>
-            <p>Moscow</p>
+            <a href={props.profilePage.profile.contacts.vk}>{props.profilePage.profile.contacts.vk}</a>
           </div>
           <div className={s.data}>
             <p>Instagramm:</p>
           </div>
           <div className={s.dataAnswer}>
-            <p>nikitakoles</p>
+            <a href={props.profilePage.profile.contacts.instagram}>{props.profilePage.profile.contacts.instagram}</a>
           </div>
         </div>
       </div>

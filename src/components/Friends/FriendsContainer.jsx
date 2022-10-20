@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { followAC, setCurrentPageAC, setFriendsAC, setIsFetchingAC, setTotalUsersCountAC, unfollowAC } from "../../Redux/friendsReducer";
+import { follow, setCurrentPage, setFriends, setIsFetching, setTotalUsersCount, unfollow } from "../../Redux/friendsReducer";
 import * as axios from "axios";
 import React from "react";
 import Friends from "./Friends";
@@ -44,30 +44,15 @@ let mapStatetoProps = (state) => {
 
     }
     }
-let mapDispatchtoProps = (dispatch) => {
-      return {
-        unfollow: (userId) => {
-          dispatch(unfollowAC(userId));
-        },
-        follow: (userId) => {
-          dispatch(followAC(userId));
-        },
-        setFriends: (friends) => {
-          dispatch(setFriendsAC(friends));
-        },
-        setCurrentPage:(pageNumber)=>{
-          dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount:(totalCount)=>{
-          dispatch(setTotalUsersCountAC(totalCount))
-        },
-        setIsFetching:(isFetching)=>{
-          dispatch(setIsFetchingAC(isFetching))
-        }
-
-      };
-    };
 
 
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(FriendsContainer)
+
+export default connect(mapStatetoProps, {
+  unfollow,
+  follow,
+  setFriends,
+  setCurrentPage,
+  setTotalUsersCount,
+  setIsFetching
+})(FriendsContainer)

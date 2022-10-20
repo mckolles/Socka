@@ -17,12 +17,22 @@ const App = (props) => {
       <div className="container">
         <Nav />
         <Routes>
+          <Route path="/Socka" element={<ProfileContainer />}/>
+          <Route path="/Profile/:userId" element={<ProfileContainer />}/>
           <Route path="/Profile" element={<ProfileContainer />}/>
           <Route path="/Dialogs" element={<DialogsContainer />}/>
           <Route path="/News" element={<DialogsContainer />} />
           <Route path="/Music" element={<DialogsContainer />} />
           <Route path="/Settings" element={<DialogsContainer />} />
           <Route path="/Friends" element={<FriendsContainer />} />
+          <Route
+      path="*"
+      element={
+        <main style={{ padding: "1rem"  }}>
+          <p>There's nothing here!</p>
+        </main>
+      }
+    />
         </Routes>
       </div>
     </BrowserRouter>
