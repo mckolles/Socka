@@ -8,16 +8,24 @@ import Preloader from "../Common/Preloader/Preloader";
 class FriendsContainer extends React.Component {
   componentDidMount() {
     this.props.setIsFetching(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response=>{
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+    {
+      withCredentials:true
+    })
+    .then(response=>{
     this.props.setIsFetching(false)    
     this.props.setFriends(response.data.items )
-        // this.props.setTotalUsersCount(response.data.totalCount) иначе там слишком много юзеров
+        // this.props.setTotalUsersCount(response.data.totalCount) иначе там слишком много юзеров закоментил
       })
   }
   onPageChanged=(pageNumber)=>{
     this.props.setIsFetching(true)
     this.props.setCurrentPage(pageNumber)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response=>{
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
+    {
+      withCredentials:true
+    })
+    .then(response=>{
     this.props.setIsFetching(false)    
     this.props.setFriends(response.data.items )
       })
@@ -28,7 +36,7 @@ class FriendsContainer extends React.Component {
     {this.props.isFetching?<Preloader />:null}
     {!this.props.isFetching?<Friends onPageChanged={this.onPageChanged} totalUsersCount={this.props.totalUsersCount} 
     pageSize={this.props.pageSize} currentPage={this.props.currentPage} friendsData={this.props.friendsData} 
-    follow={this.props.follow} unfollow={this.props}  />:null}
+    follow={this.props.follow} unfollow={this.props.unfollow}  />:null}
     </>
               
 }
@@ -48,11 +56,5 @@ let mapStatetoProps = (state) => {
 
 
 
-export default connect(mapStatetoProps, {
-  unfollow,
-  follow,
-  setFriends,
-  setCurrentPage,
-  setTotalUsersCount,
-  setIsFetching
-})(FriendsContainer)
+export default connect(mapStatetoProps, {unfollow,follow,setFriends,setCurrentPage,setTotalUsersCount,setIsFetching})
+(FriendsContainer)
