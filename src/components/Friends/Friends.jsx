@@ -1,6 +1,7 @@
 import React from "react";
 import s from "../Friends/Friends.module.css"
 import { NavLink } from "react-router-dom"
+import axios from "axios";
 
 let Friends =(props)=>{
     let pagesCount=Math.ceil(props.totalUsersCount/props.pageSize)
@@ -28,8 +29,28 @@ let Friends =(props)=>{
                     </NavLink>
                     </div>
                     <div>
-                        {f.followed?<button onClick={()=>{props.unfollow(f.id)}}>Unfollow</button>:
-                        <button onClick={()=>{props.follow(f.id)}}>Follow</button>}
+                        {f.followed?<button onClick={()=>
+                        {
+                          axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}}`
+                          ,{
+                            withCredentials:true
+                          }).then(response=>{
+                            if (response.data.resultCode === 0){
+                              props.unfollow(f.id)
+                            }
+                          })
+                         }}>Unfollow</button>:
+                        <button onClick={()=>
+                          {
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}}`
+                            ,{},{
+                              withCredentials:true
+                            }).then(response=>{
+                              if (response.data.resultCode === 0){
+                                props.follow(f.id)
+                              }
+                            })
+                           }}>Follow</button>}
                       
                     </div>
                   </span>

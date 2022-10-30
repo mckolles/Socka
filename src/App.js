@@ -2,18 +2,18 @@
 
 import React from "react";
 import "./App.css";
-import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DiologsContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 // Основнная компонента
 const App = (props) => {
   return (
     <BrowserRouter>
-      <Header />
+      <HeaderContainer />
       <div className="container">
         <Nav />
         <Routes>

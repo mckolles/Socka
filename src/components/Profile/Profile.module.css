@@ -85,6 +85,17 @@
   color: #e0e2e5;
 }
 
+.dataAnswer a {
+  margin: 0;
+  grid-area: a;
+  color: #e0e2e5;
+  text-decoration: none;
+
+}
+.dataAnswer a:hover {
+  opacity: 50%;
+}
+
 /* обертки для постов */
 
 .inputPost {

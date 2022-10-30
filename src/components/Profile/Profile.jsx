@@ -21,7 +21,9 @@ const Profile = (props) => {
     <div className={s.wrapper}>
       <div className={s.avatar}>
         <div className={s.img}>
-          <img src={props.profilePage.profile.photos.large} alt="avatar" />
+          <img src={props.profilePage.profile.photos.large !=null?props.profilePage.profile.photos.large:
+                        "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album"}
+                         alt="" />
         </div>
       </div>
       <div className={s.description}>
