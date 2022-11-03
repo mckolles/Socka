@@ -1,4 +1,5 @@
-import * as axios from "axios";
+
+import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import { setAuthUserData } from "../../Redux/authReducer";

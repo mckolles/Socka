@@ -1,7 +1,9 @@
 import React from "react";
 import s from "../Friends/Friends.module.css"
 import { NavLink } from "react-router-dom"
-import * as axios from "axios";
+import { usersAPI } from "../../Api/Api";
+
+
 
 let Friends =(props)=>{
  
@@ -31,33 +33,15 @@ let Friends =(props)=>{
                     </div>
                     <div>
                         {f.followed?<button className={s.buttons} onClick={()=>
-                        {
-                          axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,
-                          {
-                            withCredentials:true,
-                            headers:{
-                              "API-KEY":"9921f9e2-fbe2-4ee1-8193-69b1e5488453"
-                            }
-                          }).then(response=>{
-                            if (response.data.resultCode === 0){
-                              props.unfollow(f.id)
-                            }
-                          })
-                         }}>Unfollow</button>:
+                           {
+                            usersAPI.unfollowFriendAPI(f.id,props.unfollow)
+                          }
+                         }>Unfollow</button>:
                         <button className={s.buttons} onClick={()=>
                           {
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,{},
-                           {
-                              withCredentials:true,
-                              headers:{
-                                "API-KEY":"9921f9e2-fbe2-4ee1-8193-69b1e5488453"
-                              }
-                            }).then(response=>{
-                              if (response.data.resultCode === 0){
-                                props.follow(f.id)
-                              }
-                            })
-                           }}>Follow</button>}
+                            usersAPI.followFriendAPI(f.id,props.follow)
+                          }
+                            }>Follow</button>}
                       
                     </div>
                   </span>

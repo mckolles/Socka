@@ -1,33 +1,27 @@
 import { connect } from "react-redux"
 import { follow, setCurrentPage, setFriends, setIsFetching, setTotalUsersCount, unfollow } from "../../Redux/friendsReducer";
-import * as axios from "axios";
 import React from "react";
 import Friends from "./Friends";
 import Preloader from "../Common/Preloader/Preloader";
+import {  usersAPI } from "../../Api/Api";
 
 class FriendsContainer extends React.Component {
   componentDidMount() {
     this.props.setIsFetching(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-    {
-      withCredentials:true
-    })
-    .then(response=>{
-    this.props.setIsFetching(false)    
-    this.props.setFriends(response.data.items )
-        // this.props.setTotalUsersCount(response.data.totalCount) иначе там слишком много юзеров закоментил
-      })
+    usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then(response=>{
+      this.props.setIsFetching(false)    
+      this.props.setFriends(response.items )
+          // this.props.setTotalUsersCount(response.data.totalCount) иначе там слишком много юзеров закоментил
+        })
   }
+
   onPageChanged=(pageNumber)=>{
     this.props.setIsFetching(true)
     this.props.setCurrentPage(pageNumber)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
-    {
-      withCredentials:true
-    })
+    usersAPI.getUsers(this.props.currentPage,this.props.pageSize)
     .then(response=>{
     this.props.setIsFetching(false)    
-    this.props.setFriends(response.data.items )
+    this.props.setFriends(response.items )
       })
   }
 
