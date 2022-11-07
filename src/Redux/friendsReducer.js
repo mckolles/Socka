@@ -3,7 +3,8 @@ let initialState = {
     pageSize:10,
     totalUsersCount: 50,
     currentPage:1,
-    isFetching: true
+    isFetching: true,
+    followingInProgres: false
 
 }
 
@@ -46,11 +47,13 @@ let initialState = {
         return {...state,totalUsersCount:action.totalUsersCount}
       case "TOGGLE-IS-FETCHING": 
         return {...state,isFetching:action.isFetching}
+      case "FOLLOWING-IN-PROGRES": 
+        return {...state,followingInProgres:action.isFetching}
 
       default:
         return state;
     }
-  };
+  };  
   
   export const follow= (userId) => ({
     type: "FOLLOW-FRIEND",
@@ -73,8 +76,13 @@ let initialState = {
     totalUsersCount
   
   });
-  export const setIsFetching = (isFetching) => ({
+  export const toggleIsFetching = (isFetching) => ({
     type: "TOGGLE-IS-FETCHING",
+    isFetching
+  
+  });
+  export const toggleFollowingInProgres = (isFetching) => ({
+    type: "FOLLOWING-IN-PROGRES",
     isFetching
   
   });
