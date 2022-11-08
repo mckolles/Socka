@@ -4,7 +4,7 @@ let initialState = {
     totalUsersCount: 50,
     currentPage:1,
     isFetching: true,
-    followingInProgres: false
+    followingInProgres: []
 
 }
 
@@ -48,7 +48,9 @@ let initialState = {
       case "TOGGLE-IS-FETCHING": 
         return {...state,isFetching:action.isFetching}
       case "FOLLOWING-IN-PROGRES": 
-        return {...state,followingInProgres:action.isFetching}
+        return {...state,followingInProgres:action.isFetching
+          ?[...state.followingInProgres,action.userId]
+          :state.followingInProgres.filter(id=>id!==action.userId)}
 
       default:
         return state;
@@ -81,9 +83,10 @@ let initialState = {
     isFetching
   
   });
-  export const toggleFollowingInProgres = (isFetching) => ({
+  export const toggleFollowingInProgres = (isFetching,userId) => ({
     type: "FOLLOWING-IN-PROGRES",
-    isFetching
+    isFetching,
+    userId
   
   });
  

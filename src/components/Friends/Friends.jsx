@@ -32,16 +32,16 @@ let Friends =(props)=>{
                     </NavLink>
                     </div>
                     <div>
-                        {f.followed?<button disabled={props.followingInProgres}
+                        {f.followed?<button disabled={props.followingInProgres.some(id=>id===f.id)}
                          className={s.buttons} onClick={()=>
                            {
-                            usersAPI.unfollowFriendAPI(f.id,props.unfollow,props.toggleFollowingInProgres)
+                            usersAPI.unfollowFriendAPI(f.id,props.unfollow,props.toggleFollowingInProgres,f.id)
                           }
                          }>Unfollow</button>:
-                        <button disabled={props.followingInProgres}
+                        <button disabled={props.followingInProgres.some(id=>id===f.id)}
                         className={s.buttons} onClick={()=>
                           {
-                            usersAPI.followFriendAPI(f.id,props.follow,props.toggleFollowingInProgres)
+                            usersAPI.followFriendAPI(f.id,props.follow,props.toggleFollowingInProgres,f.id)
                           }
                             }>Follow</button>}
                       

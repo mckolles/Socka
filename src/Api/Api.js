@@ -15,22 +15,22 @@ export const usersAPI= {
          return response.data
      })
      },
-     followFriendAPI(friendId,follow,toggleFollowingInProgres){  
-      toggleFollowingInProgres(true)
+     followFriendAPI(friendId,follow,toggleFollowingInProgres,userId){  
+      toggleFollowingInProgres(true,userId)
        instance.post(`follow/${friendId}`,{})
         .then(response=>{
-          toggleFollowingInProgres(false)
+          toggleFollowingInProgres(false,userId)
           if (response.data.resultCode === 0){
             return follow(friendId)
           }
           
         })
     },
-     unfollowFriendAPI(friendId,unfollow,toggleFollowingInProgres){
-            toggleFollowingInProgres(true)
+     unfollowFriendAPI(friendId,unfollow,toggleFollowingInProgres,userId){
+            toggleFollowingInProgres(true,userId)
             return instance.delete(`follow/${friendId}`)
             .then(response=>{
-              toggleFollowingInProgres(false)
+              toggleFollowingInProgres(false,userId)
               if (response.data.resultCode === 0){
                 return unfollow(friendId)
               }
