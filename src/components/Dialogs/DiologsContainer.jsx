@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { addDiaolgsAC, updateDiaolgsAC } from "../../Redux/diologsReducer";
-
 import Dialogs from "./Dialogs";
+import { WithAuthNavigate } from "../../HOC/WithAuthNavigate";
+import { compose } from "redux";
 
 let mapStatetoProps = (state) => {
 return {
@@ -19,6 +20,10 @@ let mapDispatchtoProps = (dispatch) => {
   };
 };
 
-const DialogsContainer = connect(mapStatetoProps, mapDispatchtoProps)(Dialogs);
 
-export default DialogsContainer;
+export default 
+compose(
+  connect(mapStatetoProps, mapDispatchtoProps),
+  WithAuthNavigate
+)(Dialogs)
+

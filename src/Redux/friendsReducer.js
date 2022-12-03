@@ -1,7 +1,9 @@
+import { usersAPI } from "../Api/Api";
+
 let initialState = {
     friendsData: [],
     pageSize:10,
-    totalUsersCount: 50,
+    totalUsersCount: 150,
     currentPage:1,
     isFetching: true,
     followingInProgres: []
@@ -57,11 +59,11 @@ let initialState = {
     }
   };  
   
-  export const follow= (userId) => ({
+  export const followSucess= (userId) => ({
     type: "FOLLOW-FRIEND",
     userId
   });
-  export const unfollow = (userId) => ({
+  export const unFollowSucess = (userId) => ({
     type: "UNFOLLOW-FRIEND",
     userId
   });
@@ -89,6 +91,46 @@ let initialState = {
     userId
   
   });
- 
+
   
+export const getFriendsThunkCreator=(currentPage,pageSize) =>{
+  return(dispatch)=>{
+   dispatch (toggleIsFetching(true))
+    usersAPI.getUsers(currentPage,pageSize).then(response=>{
+    dispatch(setCurrentPage(currentPage))
+    dispatch (toggleIsFetching(false))    
+    dispatch (setFriends(response.items ))
+    // dispatch (setTotalUsersCount(response.totalCount)) 
+      })}
+}
+export const follow=(friendId) =>{
+  return(dispatch)=>{
+   dispatch (toggleFollowingInProgres(true,friendId))
+    usersAPI.followFriendAPI(friendId).then(response=>{
+    dispatch (toggleFollowingInProgres(false,friendId))    
+    if (response.data.resultCode === 0){
+            return dispatch(followSucess(friendId))
+          }
+      })}
+    }
+export const unfollow=(friendId) =>{
+  return(dispatch)=>{
+   dispatch (toggleFollowingInProgres(true,friendId))
+    usersAPI.unfollowFriendAPI(friendId).then(response=>{
+    dispatch (toggleFollowingInProgres(false,friendId))    
+    if (response.data.resultCode === 0){
+            return dispatch(unFollowSucess(friendId))
+          }
+      })}
+}
+
   export default friendsReducer;
+
+
+  // toggleFollowingInProgres(true,userId)
+  // return instance.post(`follow/${friendId}`,{})
+  //   .then(response=>{
+  //     toggleFollowingInProgres(false,userId)
+  //     if (response.data.resultCode === 0){
+  //       return follow(friendId)
+  //     }

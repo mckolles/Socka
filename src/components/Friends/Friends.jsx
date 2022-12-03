@@ -1,7 +1,7 @@
 import React from "react";
 import s from "../Friends/Friends.module.css"
 import { NavLink } from "react-router-dom"
-import { usersAPI } from "../../Api/Api";
+
 
 
 
@@ -34,15 +34,11 @@ let Friends =(props)=>{
                     <div>
                         {f.followed?<button disabled={props.followingInProgres.some(id=>id===f.id)}
                          className={s.buttons} onClick={()=>
-                           {
-                            usersAPI.unfollowFriendAPI(f.id,props.unfollow,props.toggleFollowingInProgres,f.id)
-                          }
+                           {props.unfollow(f.id)}
                          }>Unfollow</button>:
                         <button disabled={props.followingInProgres.some(id=>id===f.id)}
                         className={s.buttons} onClick={()=>
-                          {
-                            usersAPI.followFriendAPI(f.id,props.follow,props.toggleFollowingInProgres,f.id)
-                          }
+                          {props.follow(f.id)}
                             }>Follow</button>}
                       
                     </div>

@@ -8,6 +8,8 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DiologsContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import MyProfile from "./components/Profile/MyProfile";
+import Login from "./components/Login/Login";
 
 // Основнная компонента
 const App = (props) => {
@@ -19,12 +21,13 @@ const App = (props) => {
         <Routes>
           <Route path="/Socka" element={<ProfileContainer />}/>
           <Route path="/Profile/:userId" element={<ProfileContainer />}/>
-          <Route path="/Profile" element={<ProfileContainer />}/>
+          <Route path="/Profile" element={<MyProfile />}/>
           <Route path="/Dialogs" element={<DialogsContainer />}/>
           <Route path="/News" element={<DialogsContainer />} />
           <Route path="/Music" element={<DialogsContainer />} />
           <Route path="/Settings" element={<DialogsContainer />} />
           <Route path="/Friends" element={<FriendsContainer />} />
+          <Route path="/Login" element={<Login />} />
           <Route
       path="*"
       element={

@@ -31,6 +31,8 @@ const Dialogs = (props) => {
    props.sendSms()
     
   }
+
+
   
   return (
     <div className={s.wrapper}>
