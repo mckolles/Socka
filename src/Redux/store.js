@@ -1,4 +1,4 @@
-// Основные данные
+//Старый стор до редакс
 
 import diologsReducer from "./diologsReducer";
 import profileReducer from "./profileReducer";

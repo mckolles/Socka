@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Profile.module.css";
 import MyPosts from "./My posts/MyPosts";
 import Preloader from "../Common/Preloader/Preloader";
+import ProfileStatus from "../Profile/ProfileInfo/ProfileStatus";
 
 const Profile = (props) => {
   let addPost = (e) => {
@@ -36,7 +37,7 @@ const Profile = (props) => {
             <p>Status:</p>
           </div>
           <div className={s.dataAnswer}>
-            <p>{props.profilePage.profile.aboutMe}</p>
+            <p><ProfileStatus status={props.status} updateStatus={props.updateStatus}/></p>
           </div>
 
           <div className={s.data}>
