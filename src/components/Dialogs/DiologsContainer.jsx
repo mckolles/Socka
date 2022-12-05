@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { addDiaolgsAC, updateDiaolgsAC } from "../../Redux/diologsReducer";
+import { addDiaolgsAC } from "../../Redux/diologsReducer";
 import Dialogs from "./Dialogs";
 import { WithAuthNavigate } from "../../HOC/WithAuthNavigate";
 import { compose } from "redux";
@@ -11,11 +11,8 @@ return {
 }
 let mapDispatchtoProps = (dispatch) => {
   return {
-    updateSms: (message) => {
-      dispatch(updateDiaolgsAC(message));
-    },
-    sendSms: () => {
-      dispatch(addDiaolgsAC());
+    sendSms: (newMessageBody) => {
+      dispatch(addDiaolgsAC(newMessageBody));
     },
   };
 };

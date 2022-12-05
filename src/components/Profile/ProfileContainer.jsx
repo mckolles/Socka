@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { addPost, updatePost,getProfile,updateStatus,getStatus} from "../../Redux/profileReducer";
+import { addPost,getProfile,updateStatus,getStatus} from "../../Redux/profileReducer";
 import Profile from "./Profile";
 import React from "react";
 import { useParams} from "react-router-dom";
@@ -34,7 +34,7 @@ let mapStatetoProps = (state) => {
 }
 
 compose(
-  connect(mapStatetoProps,{addPost,updatePost,getProfile,updateStatus,getStatus}),
+  connect(mapStatetoProps,{addPost,getProfile,updateStatus,getStatus}),
   withRouter,
   WithAuthNavigate
 )(ProfileContainer)
@@ -42,7 +42,7 @@ compose(
 
 
 export default compose(
-  connect(mapStatetoProps,{addPost,updatePost,getProfile,updateStatus,getStatus}),
+  connect(mapStatetoProps,{addPost,getProfile,updateStatus,getStatus}),
   withRouter,
   WithAuthNavigate
 )(ProfileContainer)

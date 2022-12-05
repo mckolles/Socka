@@ -3,15 +3,15 @@ import s from "./Profile.module.css";
 import MyPosts from "./My posts/MyPosts";
 import Preloader from "../Common/Preloader/Preloader";
 import ProfileStatus from "../Profile/ProfileInfo/ProfileStatus";
+import { Field, reduxForm, } from "redux-form";
+import { maxLengthCreator, requiredField } from "../Common/Utils/Validators/Validator";
+import { Textarea } from "../Common/Utils/FormControls";
+
+const maxLength10=maxLengthCreator(10)
 
 const Profile = (props) => {
-  let addPost = (e) => {
-    props.addPost();
-  };
-
-  let updatePost = (e) => {
-    let message = e.target.value;
-    props.updatePost(message);
+  let addPost = (values) => {
+    props.addPost(values.newPostText);
   };
 
   if(!props.profilePage.profile) {
@@ -54,18 +54,29 @@ const Profile = (props) => {
           </div>
         </div>
       </div>
-      <div className={s.inputPost} onCopy={addPost}>
-        <textarea
-          value={props.profilePage.valueProfileInput}
-          type="text"
-          onChange={updatePost}
-          placeholder="Whats new?"
-        />
-      </div>
+      <div className={s.inputPost} >
+        <AddNewPostFormRedux onSubmit={addPost}/>
+        </div>
+        
       <div className={s.myPosts}>
         <MyPosts posts={props.profilePage.posts} />
       </div>
     </div>
   );
 };
+
+const AddNewPostForm=(props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+        <Field component={Textarea} name={'newPostText'}
+          placeholder="Whats new?" validate={[requiredField,maxLength10]}
+        />
+        <button>Post</button>
+     
+        </form>
+  )
+} 
+
+const AddNewPostFormRedux=reduxForm({form:'ProfileAddNewPostForm'})(AddNewPostForm)
+
 export default Profile;

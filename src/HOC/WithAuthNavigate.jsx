@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 
+
 export const WithAuthNavigate=(Component) => {
     class NavigateComponent extends React.Component{
         render(){
