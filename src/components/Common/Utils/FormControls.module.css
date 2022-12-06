@@ -8,3 +8,8 @@
 .spanError   {
     color: red;
  }
+
+ .error {
+   color: red;
+   font-size: 30px;
+ }
