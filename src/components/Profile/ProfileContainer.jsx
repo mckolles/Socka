@@ -35,13 +35,6 @@ let mapStatetoProps = (state) => {
   }
 }
 
-compose(
-  connect(mapStatetoProps,{addPost,getProfile,updateStatus,getStatus}),
-  withRouter,
-  WithAuthNavigate
-)(ProfileContainer)
-
-
 
 export default compose(
   connect(mapStatetoProps,{addPost,getProfile,updateStatus,getStatus}),

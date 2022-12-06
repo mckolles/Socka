@@ -6,6 +6,7 @@ import ProfileStatus from "../Profile/ProfileInfo/ProfileStatus";
 import { Field, reduxForm, } from "redux-form";
 import { maxLengthCreator, requiredField } from "../Common/Utils/Validators/Validator";
 import { Textarea } from "../Common/Utils/FormControls";
+import ProfileStatusWithHooks from "./ProfileInfo/ProfileStatusWithHooks";
 
 const maxLength10=maxLengthCreator(10)
 
@@ -37,7 +38,7 @@ const Profile = (props) => {
             <p>Status:</p>
           </div>
           <div className={s.dataAnswer}>
-            <p><ProfileStatus status={props.status} updateStatus={props.updateStatus}/></p>
+            <p><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/></p>
           </div>
 
           <div className={s.data}>

@@ -1,6 +1,7 @@
 import { stopSubmit } from "redux-form";
 import { authAPI } from "../Api/Api";
 
+
 let initialState = {
       id: null,
       email: null,
@@ -44,8 +45,10 @@ let initialState = {
       if(response.data.resultCode === 0){
         let {id,email,login}=response.data.data
         dispatch(setAuthUserData(id,email,login,true))
+        
       }
         })
+       
   }
 
   export const login = (email,password,rememberMe) =>(dispatch)=> {
@@ -65,7 +68,7 @@ let initialState = {
    return authAPI.logout()
     .then(response=>{
       if(response.data.resultCode === 0){
-        dispatch(getAuthUserData(null,null,null,false))
+        dispatch(setAuthUserData(null,null,null,false))
       }
         })
   }

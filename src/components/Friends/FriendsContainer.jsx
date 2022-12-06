@@ -6,6 +6,8 @@ import Friends from "./Friends";
 import Preloader from "../Common/Preloader/Preloader";
 import { compose } from "redux";
 import { WithAuthNavigate } from "../../HOC/WithAuthNavigate";
+import { getCurrentPage, getfriends, getPageSize, getTotalFriendsCount, getFollowingInProgres, getIsFetching } from "../../Redux/friendsSelectors";
+
 
 
 class FriendsContainer extends React.Component {
@@ -29,14 +31,26 @@ class FriendsContainer extends React.Component {
 }
 }
 
+// let mapStatetoProps = (state) => {
+//     return {
+//       friendsData:state.friendsPage.friendsData,
+//       pageSize: state.friendsPage.pageSize,
+//       totalUsersCount: state.friendsPage.totalUsersCount,
+//       currentPage: state.friendsPage.currentPage,
+//       isFetching:state.friendsPage.isFetching,
+//       followingInProgres:state.friendsPage.followingInProgres
+
+//     }
+//     }
+
 let mapStatetoProps = (state) => {
     return {
-      friendsData:state.friendsPage.friendsData,
-      pageSize: state.friendsPage.pageSize,
-      totalUsersCount: state.friendsPage.totalUsersCount,
-      currentPage: state.friendsPage.currentPage,
-      isFetching:state.friendsPage.isFetching,
-      followingInProgres:state.friendsPage.followingInProgres
+      friendsData:getfriends(state),
+      pageSize: getPageSize(state),
+      totalUsersCount: getTotalFriendsCount(state),
+      currentPage: getCurrentPage(state),
+      isFetching:getIsFetching(state),
+      followingInProgres:getFollowingInProgres(state)
 
     }
     }
@@ -44,9 +58,10 @@ let mapStatetoProps = (state) => {
 
 
 export default compose(
-  WithAuthNavigate,
+  
   connect(mapStatetoProps, {
     unfollow,follow,
     toggleFollowingInProgres,
-    getFriends})
+    getFriends}),
+    WithAuthNavigate
 )(FriendsContainer)
