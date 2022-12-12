@@ -29,7 +29,7 @@ class App extends React.Component  {
   else
   return (
    
-    <HashRouter >
+    <HashRouter basename={process.env.PUBLIC_URLn}>
       <HeaderContainer />
       <div className="container">
         <Nav />
