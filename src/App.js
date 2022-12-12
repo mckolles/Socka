@@ -53,7 +53,7 @@ class App extends React.Component  {
     />
         </Routes>
       </div>
-    </Has>
+    </HashRouter>
   )
 }
 }
