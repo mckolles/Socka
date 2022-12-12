@@ -29,7 +29,7 @@ class App extends React.Component  {
   else
   return (
    
-    <BrowserRouter basename={process.env.PUBLIC_URLn}>
+    <BrowserRouter basename='/'>
       <HeaderContainer />
       <div className="container">
         <Nav />
