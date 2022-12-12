@@ -3,7 +3,7 @@
 import React from "react";
 import "./App.css";
 import Nav from "./components/Nav/Nav";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import ProfileContainer, { withRouter } from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DiologsContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
@@ -29,7 +29,7 @@ class App extends React.Component  {
   else
   return (
    
-    <BrowserRouter basename={process.env.PUBLIC_URLn}>
+    <HashRouter >
       <HeaderContainer />
       <div className="container">
         <Nav />
@@ -53,7 +53,7 @@ class App extends React.Component  {
     />
         </Routes>
       </div>
-    </BrowserRouter>
+    </Has>
   )
 }
 }
