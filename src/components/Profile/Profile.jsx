@@ -2,7 +2,6 @@ import React from "react";
 import s from "./Profile.module.css";
 import MyPosts from "./My posts/MyPosts";
 import Preloader from "../Common/Preloader/Preloader";
-import ProfileStatus from "../Profile/ProfileInfo/ProfileStatus";
 import { Field, reduxForm, } from "redux-form";
 import { maxLengthCreator, requiredField } from "../Common/Utils/Validators/Validator";
 import { Textarea } from "../Common/Utils/FormControls";
@@ -13,7 +12,7 @@ const maxLength10=maxLengthCreator(10)
 const Profile = (props) => {
   let addPost = (values) => {
     props.addPost(values.newPostText);
-  };
+  }
 
   if(!props.profilePage.profile) {
       return <Preloader />
@@ -57,6 +56,7 @@ const Profile = (props) => {
       </div>
       <div className={s.inputPost} >
         <AddNewPostFormRedux onSubmit={addPost}/>
+        <button >Delete post</button>
         </div>
         
       <div className={s.myPosts}>

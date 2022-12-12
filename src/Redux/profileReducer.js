@@ -1,5 +1,10 @@
 import { ProfileAPI, usersAPI } from "../Api/Api";
 
+const addPostConst='profileReducer/ADD-POST'
+const setUserProfileConst='profileReducer/SET-USER-PROFILE"'
+const setStatusConst='profileReducer/SET-STATUS'
+const deletePostConst='profileReducer/DELETE-POST'
+
 let initialState = {
   posts: [
     {
@@ -10,68 +15,71 @@ let initialState = {
       image:
         "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
       id: "1",
-    }
+    },
   ],
-  profile:null,
-  status:""
+  profile: null,
+  status: "",
 };
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD-POST": {
-      return{
+    case addPostConst: {
+      return {
         ...state,
-        valueProfileInput: "",
         posts: [
           ...state.posts,
           {
             avasrc:
               "https://sun1-86.userapi.com/impg/e0H7e8Mn1PDNrgQFfmCejlHTpuvbfOzrFKfc6w/rsNoB_wMy1o.jpg?size=1317x2160&quality=95&sign=ec024126a5cb967fd03817bb98707f03&type=album",
-            name: "Koles NIkita",
-            text: action.message,
+          name: "Koles NIkita" ,
+          text: action.message ,
+          
             image:
               "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
-            id: "7",
-          },
+          id: "2" 
+        }
         ],
       };
     }
-    case "SET-USER-PROFILE": {
-      return{ 
+    case setUserProfileConst: {
+      return {
         ...state,
-       profile:action.profile
+        profile: action.profile,
       };
     }
-    case "SET-STATUS": {
-      return{ 
+    case setStatusConst: {
+      return {
         ...state,
-       status:action.status
+        status: action.status,
       };
+    }
+    case deletePostConst: {
+      return {...state,posts:state.posts.filter(p=>p.id !==action.postID)}
     }
     default:
       return state;
   }
 };
 
-export const addPost = (message) => ({ type: "ADD-POST",message });
-export const setProfile = (profile) => ({ type: "SET-USER-PROFILE",profile });
-export const setStatus= (status) => ({ type: "SET-STATUS",status });
+export const addPost = (message) => ({ type: addPostConst, message });
+export const setProfile = (profile) => ({ type: setUserProfileConst, profile });
+export const setStatus = (status) => ({ type: setStatusConst, status });
+export const deletePost = (postID) => ({ type: deletePostConst, postID });
 
-export const getProfile = (userId) => (dispatch)=>{
- return usersAPI.getProfile(userId).then(response=>{
-  dispatch(setProfile(response.data))
-      })
+export const getProfile = (userId) =>async (dispatch) => {
+  let response=await usersAPI.getProfile(userId)
+    dispatch(setProfile(response.data));
 };
-export const getStatus = (userId) => (dispatch)=>{
- return ProfileAPI.getStatus(userId).then(response=>{
-  dispatch(setStatus(response.data))
-      })
+export const getStatus = (userId) => async(dispatch) => {
+  let response=await ProfileAPI.getStatus(userId)
+    dispatch(setStatus(response.data));
+
 };
-export const updateStatus = (status) => (dispatch)=>{
- return ProfileAPI.updateStatus(status).then(response=>{
-  if(response.data.resultCode === 0){
-  dispatch(setStatus(status))}
-      })
+export const updateStatus = (status) => async(dispatch) => {
+  let response=await ProfileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+      dispatch(setStatus(status));
+    }
 };
 
 export default profileReducer;

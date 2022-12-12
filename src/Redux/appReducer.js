@@ -1,5 +1,8 @@
 import { getAuthUserData } from "./authReducer";
 
+const setInitializedConst='appReducer/SET-INITIALIZED'
+
+
 let initialState = {
       initialized: false,
       
@@ -9,7 +12,7 @@ let initialState = {
   const appReducer = (state = initialState, action) => {
 
     switch (action.type) {
-      case "SET-INITIALIZED": 
+      case setInitializedConst: 
         return {
             ...state,
             initialized:true
@@ -21,13 +24,7 @@ let initialState = {
   };
   
   export const initializedSuccess= () => ({
-    type: "SET-INITIALIZED"
-  });
-
-  export const setIsFetching = (isFetching) => ({
-    type: "TOGGLE-IS-FETCHING",
-    isFetching
-  
+    type: setInitializedConst
   });
 
   export const initializeApp = () =>(dispatch)=> {

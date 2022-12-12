@@ -1,11 +1,11 @@
-//Старый стор до редакс
+//Старый стор до редакс для понимания нигде не используется сейчас
 
 import diologsReducer from "./diologsReducer";
 import profileReducer from "./profileReducer";
 
 
 
-let store={
+ let store={
    _state:{
     profilePage:{
       posts:[
@@ -64,7 +64,6 @@ dispatch(action){
 }
 }
 
-window.store = store
-
 
 export default store
+

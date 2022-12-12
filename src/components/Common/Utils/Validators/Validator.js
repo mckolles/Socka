@@ -6,7 +6,7 @@ export const requiredField=value=>{
 }
 
 
-export const maxLengthCreator=(maxLength)=>(value)=>{
+export const maxLengthCreator=(maxLength)=>(value=1)=>{
 if(value.length>maxLength) return `Max length is ${maxLength} characters`
     else return undefined
     

@@ -16,6 +16,7 @@ import {initializeApp} from "./Redux/appReducer"
 import Preloader from "./components/Common/Preloader/Preloader";
 
 
+
 // Основнная компонента
 class App extends React.Component  {
   componentDidMount() {
@@ -27,6 +28,7 @@ class App extends React.Component  {
   }
   else
   return (
+   
     <BrowserRouter>
       <HeaderContainer />
       <div className="container">
@@ -63,4 +65,25 @@ const mapStateToProps = (state) =>({
 export default compose(
   withRouter,
   connect(mapStateToProps,{initializeApp}))(App)
+
+
+
+
+
+let findNaturalNumber=(startInterval,endInterval)=>{
+  let resultArray=[]
+  if(endInterval>startInterval&&startInterval>=0){
+    nextNumber:
+    for(let i=startInterval;i<=endInterval;i++){
+      for(let j=1;j<i;j++){
+        if(i%j===0&&i!==j&&j!==1) continue nextNumber 
+      }
+      if(i>0)resultArray.push(i)
+  }
+  console.log(resultArray)
+  }
+  else alert('Пожалуйста, выбери положительный диапазон например от 1 до 5')
+
+}
+findNaturalNumber(0,10)
 

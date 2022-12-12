@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-    const ProfileStatusWithHooks =(props)=>{
+    const ProfileStatusWithHooks =React.memo((props)=>{
             let [editMode,setEditMode]=useState(false)   
             const activateEditMode = ()=>{
                 setEditMode(true)
@@ -18,7 +18,6 @@ import { useState } from "react";
             useEffect(()=>{
                 setStatus(props.status)
             },[props.status])
-            debugger
         
 
             return(
@@ -27,7 +26,7 @@ import { useState } from "react";
             {editMode && <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={status} />}
             </>
             )
-        }
+        })
     
 
     export default ProfileStatusWithHooks

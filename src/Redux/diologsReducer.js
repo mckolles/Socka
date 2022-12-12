@@ -8,9 +8,11 @@ let initialState = {
   ]
 };
 
+const addDialogTextAreaConst='diologsReducer/ADD-DIALOGS-TEXTAREA'
+
 const diologsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD-DIALOGS-TEXTAREA": {
+    case addDialogTextAreaConst: {
       let body=action.newMessageBody
       return{
         ...state,
@@ -28,7 +30,7 @@ const diologsReducer = (state = initialState, action) => {
 
 
 export const addDiaolgsAC = (newMessageBody) => ({
-  type: "ADD-DIALOGS-TEXTAREA",
+  type: addDialogTextAreaConst,
   newMessageBody
 });
 

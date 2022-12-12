@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./MyPosts.module.css";
 
-const MyPost = (props) => {
+const MyPost =React.memo ((props) => {
   return (
     <div className={s.postsWrapper}>
       <div className={s.ava}>
@@ -18,13 +18,14 @@ const MyPost = (props) => {
       </div>
     </div>
   );
-};
+})
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
+  
   let postsComponent = props.posts.map((p) => (
     <MyPost avaSrc={props.avasrc} name={p.name} text={p.text} image={p.image} key={p.id} />
   ));
   return <div> {postsComponent}</div>;
-};
+})
 
 export default MyPosts;

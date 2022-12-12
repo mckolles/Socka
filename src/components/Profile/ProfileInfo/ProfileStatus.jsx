@@ -1,5 +1,7 @@
     import React from "react"; 
 
+    // старая классовая компонента для сравнениия с хуками
+
     class ProfileStatus extends React.Component {
         state = {
             editMode:false,

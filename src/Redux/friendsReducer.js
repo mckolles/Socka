@@ -10,14 +10,19 @@ let initialState = {
 
 }
 
+const followFriendConst='friendsReducer/FOLLOW-FRIEND'
+const unfollowFriendConst='friendsReducer/UNFOLLOW-FRIEND'
+const setFriendsConst='friendsReducer/SET-FRIENDS'
+const setCurrentPageConst='friendsReducer/SET-CURRENT-PAGE'
+const setTotalUsersCountConst='friendsReducer/SET-TOTAL-USERS-COUNT'
+const toggleIsFetchingConst='friendsReducer/TOGGLE-IS-FETCHING'
+const followingInProgressConst='friendsReducer/FOLLOWING-IN-PROGRESS'
+
   const friendsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-      case "FOLLOW-FRIEND": 
-        return {
-            ...state,
-            friendsData:state.friendsData.map(
-                f => {
+      case followFriendConst: 
+        return {...state,friendsData:state.friendsData.map(f => {
                     if (f.id===action.userId){
                         return {...f,followed:true}
                     }
@@ -26,11 +31,9 @@ let initialState = {
             )
         }
       
-      case "UNFOLLOW-FRIEND": 
+      case unfollowFriendConst: 
         return {
-            ...state,
-            friendsData:state.friendsData.map(
-                f => {
+            ...state,friendsData:state.friendsData.map(f => {
                     if (f.id===action.userId){
                         return {...f,followed:false}
                     }
@@ -38,18 +41,15 @@ let initialState = {
                 }
             )
         }
-      case "SET-FRIENDS": 
+      case setFriendsConst: 
         return {...state,friendsData:action.friendsData}
-        
-      
-      case "SET-CURRENT-PAGE": 
+      case setCurrentPageConst: 
         return {...state,currentPage: action.currentPage}
-        
-      case "SET-TOTAL-USERS-COUNT": 
+      case setTotalUsersCountConst: 
         return {...state,totalUsersCount:action.totalUsersCount}
-      case "TOGGLE-IS-FETCHING": 
+      case toggleIsFetchingConst: 
         return {...state,isFetching:action.isFetching}
-      case "FOLLOWING-IN-PROGRES": 
+      case followingInProgressConst: 
         return {...state,followingInProgres:action.isFetching
           ?[...state.followingInProgres,action.userId]
           :state.followingInProgres.filter(id=>id!==action.userId)}
@@ -60,33 +60,32 @@ let initialState = {
   };  
   
   export const followSucess= (userId) => ({
-    type: "FOLLOW-FRIEND",
+    type: followFriendConst,
     userId
   });
   export const unFollowSucess = (userId) => ({
-    type: "UNFOLLOW-FRIEND",
+    type: unfollowFriendConst,
     userId
   });
   export const setFriends = (friendsData) => ({
-    type: "SET-FRIENDS",
+    type: setFriendsConst,
     friendsData
   });
   export const setCurrentPage = (currentPage) => ({
-    type: "SET-CURRENT-PAGE",
+    type: setCurrentPageConst,
     currentPage
   });
   export const setTotalUsersCount = (totalUsersCount) => ({
-    type: "SET-TOTAL-USERS-COUNT",
+    type: setTotalUsersCountConst,
     totalUsersCount
-  
   });
   export const toggleIsFetching = (isFetching) => ({
-    type: "TOGGLE-IS-FETCHING",
+    type: toggleIsFetchingConst,
     isFetching
   
   });
   export const toggleFollowingInProgres = (isFetching,userId) => ({
-    type: "FOLLOWING-IN-PROGRES",
+    type: followingInProgressConst,
     isFetching,
     userId
   
@@ -94,34 +93,32 @@ let initialState = {
 
   
 export const getFriendsThunkCreator=(currentPage,pageSize) =>{
-  return(dispatch)=>{
+  return async(dispatch)=>{
    dispatch (toggleIsFetching(true))
-    usersAPI.getUsers(currentPage,pageSize).then(response=>{
+    let response=await usersAPI.getUsers(currentPage,pageSize)
     dispatch(setCurrentPage(currentPage))
     dispatch (toggleIsFetching(false))    
     dispatch (setFriends(response.items ))
-    // dispatch (setTotalUsersCount(response.totalCount)) 
-      })}
+    // dispatch (setTotalUsersCount(response.totalCount)) слишком много юзеров 
+}
 }
 export const follow=(friendId) =>{
-  return(dispatch)=>{
+  return async(dispatch)=>{
    dispatch (toggleFollowingInProgres(true,friendId))
-    usersAPI.followFriendAPI(friendId).then(response=>{
+   let response=await usersAPI.followFriendAPI(friendId)
     dispatch (toggleFollowingInProgres(false,friendId))    
     if (response.data.resultCode === 0){
             return dispatch(followSucess(friendId))
-          }
-      })}
+          }}
     }
 export const unfollow=(friendId) =>{
-  return(dispatch)=>{
+  return async(dispatch)=>{
    dispatch (toggleFollowingInProgres(true,friendId))
-    usersAPI.unfollowFriendAPI(friendId).then(response=>{
+   let response=await usersAPI.unfollowFriendAPI(friendId)
     dispatch (toggleFollowingInProgres(false,friendId))    
     if (response.data.resultCode === 0){
             return dispatch(unFollowSucess(friendId))
-          }
-      })}
+          }}
 }
 
   export default friendsReducer;
