@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Socka/static/css/main.87a112ab.css",
-    "main.js": "/Socka/static/js/main.d6683082.js",
+    "main.js": "/Socka/static/js/main.0e34de20.js",
     "static/js/787.28cb0dcd.chunk.js": "/Socka/static/js/787.28cb0dcd.chunk.js",
     "static/media/profile-avatar.jpg": "/Socka/static/media/profile-avatar.cfb0b6c8ceba55b4f54e.jpg",
     "static/media/news-icon.png": "/Socka/static/media/news-icon.804b9ad2417f88235864.png",
@@ -14,11 +14,11 @@
     "static/media/Settings.gif": "/Socka/static/media/Settings.9acc60d8e2990105d71d.gif",
     "index.html": "/Socka/index.html",
     "main.87a112ab.css.map": "/Socka/static/css/main.87a112ab.css.map",
-    "main.d6683082.js.map": "/Socka/static/js/main.d6683082.js.map",
+    "main.0e34de20.js.map": "/Socka/static/js/main.0e34de20.js.map",
     "787.28cb0dcd.chunk.js.map": "/Socka/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.87a112ab.css",
-    "static/js/main.d6683082.js"
+    "static/js/main.0e34de20.js"
   ]
 }
