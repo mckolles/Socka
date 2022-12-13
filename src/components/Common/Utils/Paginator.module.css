@@ -1,0 +1,10 @@
+.selectedPage{
+    font-weight: bold;
+    
+}
+
+.pageNumbers span{
+    font-size: 30px;
+    cursor: pointer;
+    
+}

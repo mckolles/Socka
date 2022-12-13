@@ -3,7 +3,7 @@
 import React from "react";
 import "./App.css";
 import Nav from "./components/Nav/Nav";
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import {HashRouter, Route, Routes } from "react-router-dom";
 import ProfileContainer, { withRouter } from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DiologsContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";

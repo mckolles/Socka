@@ -1,4 +1,5 @@
 import { usersAPI } from "../Api/Api";
+import { updateObjectInArray } from "../components/Common/Utils/Object-helpers";
 
 let initialState = {
     friendsData: [],
@@ -7,7 +8,6 @@ let initialState = {
     currentPage:1,
     isFetching: true,
     followingInProgres: []
-
 }
 
 const followFriendConst='friendsReducer/FOLLOW-FRIEND'
@@ -22,25 +22,9 @@ const followingInProgressConst='friendsReducer/FOLLOWING-IN-PROGRESS'
 
     switch (action.type) {
       case followFriendConst: 
-        return {...state,friendsData:state.friendsData.map(f => {
-                    if (f.id===action.userId){
-                        return {...f,followed:true}
-                    }
-                    return f
-                }
-            )
-        }
-      
+        return {...state,friendsData:updateObjectInArray(state.friendsData,action.userId,'id',{followed:true})}
       case unfollowFriendConst: 
-        return {
-            ...state,friendsData:state.friendsData.map(f => {
-                    if (f.id===action.userId){
-                        return {...f,followed:false}
-                    }
-                    return f
-                }
-            )
-        }
+        return {...state,friendsData:updateObjectInArray(state.friendsData,action.userId,'id',{followed:false})}
       case setFriendsConst: 
         return {...state,friendsData:action.friendsData}
       case setCurrentPageConst: 
@@ -82,13 +66,11 @@ const followingInProgressConst='friendsReducer/FOLLOWING-IN-PROGRESS'
   export const toggleIsFetching = (isFetching) => ({
     type: toggleIsFetchingConst,
     isFetching
-  
   });
   export const toggleFollowingInProgres = (isFetching,userId) => ({
     type: followingInProgressConst,
     isFetching,
     userId
-  
   });
 
   
@@ -102,32 +84,30 @@ export const getFriendsThunkCreator=(currentPage,pageSize) =>{
     // dispatch (setTotalUsersCount(response.totalCount)) слишком много юзеров 
 }
 }
+
+const followUnfollowFlow=async(dispatch,friendId,apiMethod,actionCreator) => {
+  dispatch (toggleFollowingInProgres(true,friendId))
+  let response=await apiMethod(friendId)
+  dispatch (toggleFollowingInProgres(false,friendId))
+  if (response.data.resultCode === 0){
+    return dispatch(actionCreator(friendId)) 
+  }
+ 
+} 
+     
+
 export const follow=(friendId) =>{
   return async(dispatch)=>{
-   dispatch (toggleFollowingInProgres(true,friendId))
-   let response=await usersAPI.followFriendAPI(friendId)
-    dispatch (toggleFollowingInProgres(false,friendId))    
-    if (response.data.resultCode === 0){
-            return dispatch(followSucess(friendId))
-          }}
-    }
+    followUnfollowFlow(dispatch,friendId,usersAPI.followFriendAPI.bind(usersAPI),followSucess)
+  }}
+
 export const unfollow=(friendId) =>{
   return async(dispatch)=>{
-   dispatch (toggleFollowingInProgres(true,friendId))
-   let response=await usersAPI.unfollowFriendAPI(friendId)
-    dispatch (toggleFollowingInProgres(false,friendId))    
-    if (response.data.resultCode === 0){
-            return dispatch(unFollowSucess(friendId))
-          }}
-}
+    followUnfollowFlow(dispatch,friendId,usersAPI.unfollowFriendAPI.bind(usersAPI),unFollowSucess)
+  }}
+
+
 
   export default friendsReducer;
 
 
-  // toggleFollowingInProgres(true,userId)
-  // return instance.post(`follow/${friendId}`,{})
-  //   .then(response=>{
-  //     toggleFollowingInProgres(false,userId)
-  //     if (response.data.resultCode === 0){
-  //       return follow(friendId)
-  //     }
