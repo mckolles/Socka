@@ -5,12 +5,13 @@ import {FriendsMap} from "./FriendsMap";
 let Friends =(props)=>{
     return <div>
             <Paginator 
-            totalUsersCount={props.totalUsersCount}
+            totalItemsCount={props.totalUsersCount}
             pageSize={props.pageSize} 
             currentPage={props.currentPage}
             onPageChanged={props.onPageChanged} 
+            portionSize={5}
             />
-            <FriendsMap
+            <FriendsMap       
             friendsData={props.friendsData}
             followingInProgres={props.followingInProgres}
             follow={props.follow}

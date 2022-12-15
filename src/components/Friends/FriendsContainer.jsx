@@ -31,18 +31,6 @@ class FriendsContainer extends React.Component {
 }
 }
 
-// let mapStatetoProps = (state) => {
-//     return {
-//       friendsData:state.friendsPage.friendsData,
-//       pageSize: state.friendsPage.pageSize,
-//       totalUsersCount: state.friendsPage.totalUsersCount,
-//       currentPage: state.friendsPage.currentPage,
-//       isFetching:state.friendsPage.isFetching,
-//       followingInProgres:state.friendsPage.followingInProgres
-
-//     }
-//     }
-
 let mapStatetoProps = (state) => {
     return {
       friendsData:getfriends(state),

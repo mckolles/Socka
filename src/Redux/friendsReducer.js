@@ -81,7 +81,7 @@ export const getFriendsThunkCreator=(currentPage,pageSize) =>{
     dispatch(setCurrentPage(currentPage))
     dispatch (toggleIsFetching(false))    
     dispatch (setFriends(response.items ))
-    // dispatch (setTotalUsersCount(response.totalCount)) слишком много юзеров 
+    dispatch (setTotalUsersCount(response.totalCount)) 
 }
 }
 
