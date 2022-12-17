@@ -4,6 +4,7 @@ const addPostConst='profileReducer/ADD-POST'
 const setUserProfileConst='profileReducer/SET-USER-PROFILE"'
 const setStatusConst='profileReducer/SET-STATUS'
 const deletePostConst='profileReducer/DELETE-POST'
+const savePhotoConst='profileReducer/SAVE-PHOTO-SUCCESS'
 
 let initialState = {
   posts: [
@@ -56,6 +57,10 @@ const profileReducer = (state = initialState, action) => {
     case deletePostConst: {
       return {...state,posts:state.posts.filter(p=>p.id !==action.postID)}
     }
+    case savePhotoConst: {
+      
+      return {...state, profile:{...state.profile,photos:action.photos }}
+  }
     default:
       return state;
   }
@@ -65,6 +70,8 @@ export const addPost = (message) => ({ type: addPostConst, message });
 export const setProfile = (profile) => ({ type: setUserProfileConst, profile });
 export const setStatus = (status) => ({ type: setStatusConst, status });
 export const deletePost = (postID) => ({ type: deletePostConst, postID });
+export const savePhotoSuccess = (photos) => ({ type: savePhotoConst, photos });
+
 
 export const getProfile = (userId) =>async (dispatch) => {
   let response=await usersAPI.getProfile(userId)
@@ -79,6 +86,14 @@ export const updateStatus = (status) => async(dispatch) => {
   let response=await ProfileAPI.updateStatus(status)
     if (response.data.resultCode === 0) {
       dispatch(setStatus(status));
+    }
+};
+export const savePhoto = (file) => async(dispatch) => {
+ 
+  let response=await ProfileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+      dispatch(savePhotoSuccess(response.data.data.photos));
+      alert('Are you shure?')
     }
 };
 

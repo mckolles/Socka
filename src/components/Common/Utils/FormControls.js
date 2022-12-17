@@ -6,7 +6,7 @@ export const Textarea=({input,meta,...props})=>{
     return (
         <div >
            <div>
-            <textarea className={s.formControl&&hasError}  {...input} {...props} />
+            <textarea className={hasError?s.formControl:undefined}  {...input} {...props} />
             </div> 
             {hasError&& <span className={s.spanError}>{meta.error}</span>}
         </div>
@@ -17,7 +17,7 @@ export const Input=({input,meta,...props})=>{
     return (
         <div >
            <div>
-            <input className={s.formControl&&hasError}  {...input} {...props} />
+            <input className={hasError?s.formControl:undefined}  {...input} {...props} />
             </div> 
             {hasError&& <span className={s.spanError}>{meta.error}</span>}
         </div>

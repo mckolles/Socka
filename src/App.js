@@ -1,11 +1,10 @@
 // Импорты тут
 
-import React from "react";
+import React,{Suspense, lazy} from "react";
 import "./App.css";
 import Nav from "./components/Nav/Nav";
 import {HashRouter, Route, Routes } from "react-router-dom";
-import ProfileContainer, { withRouter } from "./components/Profile/ProfileContainer";
-import DialogsContainer from "./components/Dialogs/DiologsContainer";
+import { withRouter } from "./components/Profile/ProfileContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import MyProfile from "./components/Profile/MyProfile";
@@ -14,6 +13,8 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import {initializeApp} from "./Redux/appReducer"
 import Preloader from "./components/Common/Preloader/Preloader";
+const DialogsContainer=lazy(()=>import ('./components/Dialogs/DiologsContainer'))
+const ProfileContainer=lazy(()=>import ('./components/Profile/ProfileContainer'))
 
 
 
@@ -33,8 +34,9 @@ class App extends React.Component  {
       <HeaderContainer />
       <div className="container">
         <Nav />
+        <Suspense fallback={<Preloader />} >
         <Routes>
-          <Route path="/Socka" element={<MyProfile />}/>
+          <Route path="/" element={<MyProfile />} />
           <Route path="/Profile/:userId" element={<ProfileContainer />}/>
           <Route path="/Profile" element={<MyProfile />}/>
           <Route path="/Dialogs" element={<DialogsContainer />}/>
@@ -46,12 +48,13 @@ class App extends React.Component  {
           <Route
       path="*"
       element={
-        <main style={{ padding: "1rem"  }}>
+        <main style={{ padding: "1rem" }}>
           <p>There's nothing here!</p>
         </main>
       }
     />
         </Routes>
+        </Suspense>
       </div>
     </HashRouter>
   )

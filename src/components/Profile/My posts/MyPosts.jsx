@@ -25,7 +25,7 @@ const MyPosts = React.memo((props) => {
   let postsComponent = props.posts.map((p) => (
     <MyPost avaSrc={props.avasrc} name={p.name} text={p.text} image={p.image} key={p.id} />
   ));
-  return <div> {postsComponent}</div>;
+  return <div> {!props.onFriendPage?postsComponent:<div className={s.empty}>No posts here!</div>}</div>;
 })
 
 export default MyPosts;

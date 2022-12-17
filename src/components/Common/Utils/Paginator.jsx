@@ -14,8 +14,7 @@ let leftPortionPageNumber=(portionNumber-1)*props.portionSize+1
 let rightPortionPageNumber=portionNumber*props.portionSize
 let arrowBack='<'
 let arrowForward='>'
-useEffect(()=>setPortionNumber(Math.ceil(props.currentPage/props.portionSize)), [props.currentPage])
-
+useEffect(()=>setPortionNumber(Math.ceil(props.currentPage/props.portionSize)),[props.currentPage, props.portionSize] )
 
 return <div className={s.paginator}>
     {portionNumber>1 &&<button onClick={()=>{setPortionNumber(portionNumber-1)}}>{arrowBack}</button> }
