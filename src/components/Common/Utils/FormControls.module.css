@@ -2,8 +2,8 @@
 
 
  .formControl  {
-   border:  20px red solid;
-   color:red
+   border:  1px red solid;
+   
 }
 
 .spanError   {
@@ -12,5 +12,14 @@
 
  .error {
    color: red;
-   font-size: 30px;
+   font-size: 20px;
+ }
+
+ .checkbox{
+  color: #e0e2e5;
+  display: inline;
+ }
+
+ .captcha{
+  margin: 10px 0;
  }

@@ -6,6 +6,7 @@ import { Field, reduxForm, } from "redux-form";
 import { maxLengthCreator, requiredField } from "../Common/Utils/Validators/Validator";
 import { Textarea } from "../Common/Utils/FormControls";
 import ProfileStatusWithHooks from "./ProfileInfo/ProfileStatusWithHooks";
+import { ExtendedProfile } from "./ProfileInfo/ExtendedProfile";
 
 const maxLength10=maxLengthCreator(10)
 
@@ -13,7 +14,9 @@ const Profile = (props) => {
   let addPost = (values) => {
     props.addPost(values.newPostText);
   }
-  let myProfile=!props.userId
+ 
+  let myProfile=!props.match.params.userId
+  let moreInfoModBoolean=props.profilePage.moreInfoMod
   if(!props.profilePage.profile) {
       return <Preloader />
   }
@@ -22,8 +25,9 @@ const Profile = (props) => {
       props.savePhoto(e.target.files[0])
     }
   }
+  
   return (
-   
+   <>
     <div className={s.wrapper}>
       <div className={s.avatar}>
         <div className={s.img}>
@@ -33,7 +37,7 @@ const Profile = (props) => {
         </div>
        {myProfile&&<input type='file' onChange={onMainPhotoSelected}></input>}
       </div>
-      <div className={s.description}>
+     {!moreInfoModBoolean&&<div className={s.description}>
         <div className={s.descriptionEl}>
           <div className={s.descriptionH1}>
             <h1>{props.profilePage.profile.fullName}</h1>
@@ -44,7 +48,7 @@ const Profile = (props) => {
           </div>
           <div className={s.dataAnswer}>
            {myProfile?<p><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/></p>:
-           <p>{props.status?props.status:'---'}</p>}
+           <p></p>}
           </div>
           <div className={s.data}>
             <p>VK:</p>
@@ -53,12 +57,20 @@ const Profile = (props) => {
             <a href={props.profilePage.profile.contacts.vk}>{props.profilePage.profile.contacts.vk}</a>
           </div>
           <div className={s.data}>
-            <p>Instagramm:</p>
+            <p>Github:</p>
           </div>
           <div className={s.dataAnswer}>
             <a href={props.profilePage.profile.contacts.instagram}>{props.profilePage.profile.contacts.instagram}</a>
+            
           </div>
+          {!moreInfoModBoolean&&<button onClick={()=>props.moreInfoMod(true)}>More info</button>}
+          
+         
         </div>
+      </div>}
+      <div>
+      {moreInfoModBoolean&&<ExtendedProfile moreInfoMod={props.moreInfoMod }saveProfile={props.saveProfile} myProfile={myProfile} profile={props.profilePage.profile}/>}
+      {moreInfoModBoolean&&<button onClick={()=>props.moreInfoMod(false)}>Hide</button>}
       </div>
       {myProfile&&<><div className={s.inputPost} >
         <AddNewPostFormRedux onSubmit={addPost}/>
@@ -66,15 +78,13 @@ const Profile = (props) => {
         <div className={s.myPosts}>
         <MyPosts posts={props.profilePage.posts} />
       </div></> }
-      {!myProfile&&<><div className={s.inputPost} >
-        <AddNewPostFormRedux onFriendPage={true} />
-        </div>
+      {!myProfile&&<>
         <div className={s.myPosts}>
         <MyPosts onFriendPage={true}  posts={props.profilePage.posts} />
       </div></>}
-      
-      
     </div>
+    
+    </>
   );
 };
 

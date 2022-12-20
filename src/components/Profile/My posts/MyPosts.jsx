@@ -5,7 +5,7 @@ const MyPost =React.memo ((props) => {
   return (
     <div className={s.postsWrapper}>
       <div className={s.ava}>
-        <img src={props.avasrc} alt="1"></img>
+        <img src={props.avaSrc} alt="1"></img>
         <div className={s.authorName}>
           <p>{props.name}</p>
         </div>
@@ -23,9 +23,13 @@ const MyPost =React.memo ((props) => {
 const MyPosts = React.memo((props) => {
   
   let postsComponent = props.posts.map((p) => (
-    <MyPost avaSrc={props.avasrc} name={p.name} text={p.text} image={p.image} key={p.id} />
+    <MyPost avaSrc={p.avasrc} name={p.name} text={p.text} image={p.image} key={p.id} />
   ));
-  return <div> {!props.onFriendPage?postsComponent:<div className={s.empty}>No posts here!</div>}</div>;
+  if(props.posts.length === 0) {
+    return <div className={s.empty}>No posts yet!</div>
+  }
+  else return <div> {!props.onFriendPage?postsComponent:<div className={s.empty}>No posts yet!</div>}</div>;
+
 })
 
 export default MyPosts;

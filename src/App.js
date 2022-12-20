@@ -20,8 +20,15 @@ const ProfileContainer=lazy(()=>import ('./components/Profile/ProfileContainer')
 
 // Основнная компонента
 class App extends React.Component  {
+  catchAllUnhandledErrors=(promiseRejectionEvent)=>{
+    alert('Something went wrong')
+  }
   componentDidMount() {
     this.props.initializeApp()
+    window.addEventListener('unhandledrejection',this.catchAllUnhandledErrors)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('unhandledrejection',this.catchAllUnhandledErrors)
   }
   render(){
   if(!this.props.initialized){
@@ -48,7 +55,7 @@ class App extends React.Component  {
           <Route
       path="*"
       element={
-        <main style={{ padding: "1rem" }}>
+        <main style={{ padding: "1rem", color:'white'}}>
           <p>There's nothing here!</p>
         </main>
       }

@@ -1,0 +1,12 @@
+.profileData{
+    background-color: rgb(34,34,34);
+    border-radius: 30px;
+}
+.profileData b{
+    margin: 20px;
+
+}
+.error{
+    color: red;
+    font-size: 20px;
+}
