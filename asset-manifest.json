@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/Socka/static/css/main.ed1605fb.css",
-    "main.js": "/Socka/static/js/main.8e809705.js",
+    "main.js": "/Socka/static/js/main.526e72c4.js",
     "static/css/965.2ecad71d.chunk.css": "/Socka/static/css/965.2ecad71d.chunk.css",
-    "static/js/965.53d70fbf.chunk.js": "/Socka/static/js/965.53d70fbf.chunk.js",
+    "static/js/965.5fe6c3c0.chunk.js": "/Socka/static/js/965.5fe6c3c0.chunk.js",
     "static/js/787.28cb0dcd.chunk.js": "/Socka/static/js/787.28cb0dcd.chunk.js",
     "static/media/profile-avatar.jpg": "/Socka/static/media/profile-avatar.cfb0b6c8ceba55b4f54e.jpg",
     "static/media/dialogs-icon.png": "/Socka/static/media/dialogs-icon.1aa1211a8a09a56214d3.png",
@@ -13,13 +13,13 @@
     "static/media/Settings.gif": "/Socka/static/media/Settings.9acc60d8e2990105d71d.gif",
     "index.html": "/Socka/index.html",
     "main.ed1605fb.css.map": "/Socka/static/css/main.ed1605fb.css.map",
-    "main.8e809705.js.map": "/Socka/static/js/main.8e809705.js.map",
+    "main.526e72c4.js.map": "/Socka/static/js/main.526e72c4.js.map",
     "965.2ecad71d.chunk.css.map": "/Socka/static/css/965.2ecad71d.chunk.css.map",
-    "965.53d70fbf.chunk.js.map": "/Socka/static/js/965.53d70fbf.chunk.js.map",
+    "965.5fe6c3c0.chunk.js.map": "/Socka/static/js/965.5fe6c3c0.chunk.js.map",
     "787.28cb0dcd.chunk.js.map": "/Socka/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ed1605fb.css",
-    "static/js/main.8e809705.js"
+    "static/js/main.526e72c4.js"
   ]
 }
