@@ -3,12 +3,11 @@ import s from "./Profile.module.css";
 import MyPosts from "./My posts/MyPosts";
 import Preloader from "../Common/Preloader/Preloader";
 import { Field, reduxForm, } from "redux-form";
-import { maxLengthCreator, requiredField } from "../Common/Utils/Validators/Validator";
 import { Textarea } from "../Common/Utils/FormControls";
 import ProfileStatusWithHooks from "./ProfileInfo/ProfileStatusWithHooks";
 import { ExtendedProfile } from "./ProfileInfo/ExtendedProfile";
 
-const maxLength10=maxLengthCreator(10)
+
 
 const Profile = (props) => {
   let addPost = (values) => {
@@ -93,7 +92,7 @@ const AddNewPostForm=(props) => {
     <>
    {!props.onFriendPage && <form onSubmit={props.handleSubmit}>
         <Field component={Textarea} name={'newPostText'}
-          placeholder="Whats new?" validate={[requiredField,maxLength10]}
+          placeholder="Whats new?"
         />
         <button>Post</button>
         </form>}
