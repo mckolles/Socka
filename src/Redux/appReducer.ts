@@ -4,11 +4,11 @@ import { getAuthUserData } from "./authReducer";
 const setInitializedConst='appReducer/SET-INITIALIZED'
 
 export type InitialStateType = {
-  initialized: boolean,
+  initialized: boolean
 }
 
 let initialState:InitialStateType = {
-      initialized: false,
+      initialized: false
 }
 
 

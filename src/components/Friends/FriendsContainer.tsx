@@ -7,15 +7,38 @@ import Preloader from "../Common/Preloader/Preloader";
 import { compose } from "redux";
 import { WithAuthNavigate } from "../../HOC/WithAuthNavigate";
 import { getCurrentPage, getfriends, getPageSize, getTotalFriendsCount, getFollowingInProgres, getIsFetching } from "../../Redux/friendsSelectors";
+import { FriendsDataType } from "../../Types/types";
+import { AppStateType } from "../../Redux/reduxStore";
 
 
+type MapStateProps={
+  currentPage:number,
+  pageSize:number,
+  isFetching:boolean,
+  totalUsersCount:number,
+  friendsData:Array<FriendsDataType>,
+  followingInProgres:Array<number>,
+}
+type MapDispatchProps={
+  follow:(friendId:number)=>void,
+  unfollow:(friendId:number)=>void,
+  getFriends:(currentPage:number,pageSize:number)=>void,
+  toggleFollowingInProgres:(isFetching: boolean, userId: number)=>void
 
-class FriendsContainer extends React.Component {
+}
+type OwnPropsType={
+  
+}
+
+type PropsType=MapStateProps&MapDispatchProps
+
+
+class FriendsContainer extends React.Component<PropsType> {
   componentDidMount() {
     this.props.getFriends(this.props.currentPage,this.props.pageSize)
   }
 
-  onPageChanged=(pageNumber)=>{
+  onPageChanged=(pageNumber:number)=>{
     this.props.getFriends(pageNumber,this.props.pageSize)
   }
 
@@ -31,7 +54,7 @@ class FriendsContainer extends React.Component {
 }
 }
 
-let mapStatetoProps = (state) => {
+let mapStatetoProps = (state:AppStateType):MapStateProps => {
     return {
       friendsData:getfriends(state),
       pageSize: getPageSize(state),
@@ -39,17 +62,13 @@ let mapStatetoProps = (state) => {
       currentPage: getCurrentPage(state),
       isFetching:getIsFetching(state),
       followingInProgres:getFollowingInProgres(state)
-
     }
     }
 
 
 
-export default compose(
+export default compose<PropsType>(
   
-  connect(mapStatetoProps, {
-    unfollow,follow,
-    toggleFollowingInProgres,
-    getFriends}),
+  connect<MapStateProps,MapDispatchProps,OwnPropsType,AppStateType>(mapStatetoProps,{unfollow,follow,toggleFollowingInProgres,getFriends}),
     WithAuthNavigate
 )(FriendsContainer)
