@@ -1,16 +1,40 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, InjectedFormProps, reduxForm } from "redux-form";
 import { Input} from "../Common/Utils/FormControls";
 import { maxLengthCreator, requiredField } from "../Common/Utils/Validators/Validator";
 import { login } from "../../Redux/authReducer";
 import { Navigate } from "react-router-dom";
 import s from "../Common/Utils/FormControls.module.css"
+import { AppStateType } from "../../Redux/reduxStore";
+
+
+type LoginFormOwnProps={
+    captchaUrl:string
+}
+
+ type FormDataType={
+    email:string,
+    password:string,
+    rememberMe:boolean,
+    captcha:string,
+  }
+
+  type MapDispatchToPropsType={
+    login:(email:string,password:string,rememberMe:boolean,captcha:string)=>void
+}
+
+type MapStateToPropsType={
+    isAuth:boolean,
+    captchaUrl:string|null
+
+}
+
 
 const maxLength20=maxLengthCreator(20)
 const maxLength6=maxLengthCreator(6)
 
-const LoginForm=(props)=> {
+const LoginForm:React.FC<InjectedFormProps<FormDataType&LoginFormOwnProps>>=(props)=> {
     return <div>
         <h1>LOGIN</h1>
         <form onSubmit={props.handleSubmit}>
@@ -32,8 +56,8 @@ const LoginForm=(props)=> {
 
 const LoginReduxForm=reduxForm({form: "Login"})(LoginForm)
 
-const Login=(props)=> {
-    const onSubmit = (formData) => {
+const Login:React.FC<MapStateToPropsType&MapDispatchToPropsType>=(props)=> {
+    const onSubmit = (formData:FormDataType) => {
        props.login(formData.email,formData.password,formData.rememberMe,formData.captcha)
     }
     if(props.isAuth){
@@ -43,7 +67,9 @@ const Login=(props)=> {
     return <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} /> 
 }
 
-const mapStateToProps=(state)=>({
+
+
+const mapStateToProps=(state:AppStateType):MapStateToPropsType=>({
     isAuth: state.auth.isAuth,
     captchaUrl:state.auth.captchaUrl
 })

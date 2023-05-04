@@ -34,3 +34,4 @@ export type PostType={
     status:string
     photos:PhotosType
   }
+  
