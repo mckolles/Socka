@@ -6,7 +6,7 @@
         status:string,
         updateStatus:(newStatus:string)=>void
     }
-    
+        
     type StateType ={
         editMode:boolean,
         status:string
