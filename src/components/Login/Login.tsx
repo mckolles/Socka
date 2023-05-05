@@ -10,7 +10,7 @@ import { AppStateType } from "../../Redux/reduxStore";
 
 
 type LoginFormOwnProps={
-    captchaUrl:string
+    captchaUrl:string|null
 }
 
  type FormDataType={
@@ -31,10 +31,11 @@ type MapStateToPropsType={
 }
 
 
+
 const maxLength20=maxLengthCreator(20)
 const maxLength6=maxLengthCreator(6)
 
-const LoginForm:React.FC<InjectedFormProps<FormDataType&LoginFormOwnProps>>=(props)=> {
+const LoginForm:React.FC<InjectedFormProps<FormDataType,LoginFormOwnProps>&LoginFormOwnProps>=(props)=> {
     return <div>
         <h1>LOGIN</h1>
         <form onSubmit={props.handleSubmit}>
@@ -49,12 +50,12 @@ const LoginForm:React.FC<InjectedFormProps<FormDataType&LoginFormOwnProps>>=(pro
             {props.captchaUrl&&<div className={s.captcha}><img src={props.captchaUrl} alt='captcha'/></div>}
             {props.error&&<div className={s.error}>{props.error}</div>}
             <div><button>Login</button></div>
-        </form>
+        </form> 
     </div>
     
 }
 
-const LoginReduxForm=reduxForm({form: "Login"})(LoginForm)
+const LoginReduxForm=reduxForm<FormDataType,LoginFormOwnProps>({form: "Login"})(LoginForm)
 
 const Login:React.FC<MapStateToPropsType&MapDispatchToPropsType>=(props)=> {
     const onSubmit = (formData:FormDataType) => {
