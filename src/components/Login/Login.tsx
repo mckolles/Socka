@@ -31,7 +31,6 @@ type MapStateToPropsType={
 }
 
 
-
 const maxLength20=maxLengthCreator(20)
 const maxLength6=maxLengthCreator(6)
 

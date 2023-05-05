@@ -88,7 +88,7 @@ let initialState:InitialStateType = {
         } 
   }
 
-  export const login = (email:string,password:string,rememberMe:boolean,captcha:null) =>async(dispatch:any)=> {
+  export const login = (email:string,password:string,rememberMe:boolean,captcha:null|string) =>async(dispatch:any)=> {
     let loginData=await authAPI.login(email,password,rememberMe,captcha)
       if(loginData.resultCode === ResultCodesEnum.Success){
         dispatch(getAuthUserData())
