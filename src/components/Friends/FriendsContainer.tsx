@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
-import { follow, unfollow,
-  toggleFollowingInProgres,getFriendsThunkCreator as getFriends } from "../../Redux/friendsReducer";
+import { follow, unfollow,getFriendsThunkCreator as getFriends } from "../../Redux/friendsReducer";
 import React from "react";
 import Friends from "./Friends";
 import Preloader from "../Common/Preloader/Preloader";
