@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { follow, unfollow,getFriendsThunkCreator as getFriends } from "../../Redux/friendsReducer";
+import { follow, unfollow,getFriendsThunkCreator } from "../../Redux/friendsReducer";
 import React from "react";
 import Friends from "./Friends";
 import Preloader from "../Common/Preloader/Preloader";
@@ -21,9 +21,7 @@ type MapStateProps={
 type MapDispatchProps={
   follow:(friendId:number)=>void,
   unfollow:(friendId:number)=>void,
-  getFriends:(currentPage:number,pageSize:number)=>void,
-  toggleFollowingInProgres:(isFetching: boolean, userId: number)=>void
-
+  getFriendsThunkCreator:(currentPage:number,pageSize:number)=>void
 }
 type OwnPropsType={
   
@@ -34,11 +32,11 @@ type PropsType=MapStateProps&MapDispatchProps
 
 class FriendsContainer extends React.Component<PropsType> {
   componentDidMount() {
-    this.props.getFriends(this.props.currentPage,this.props.pageSize)
+    this.props.getFriendsThunkCreator(this.props.currentPage,this.props.pageSize)
   }
 
   onPageChanged=(pageNumber:number)=>{
-    this.props.getFriends(pageNumber,this.props.pageSize)
+    this.props.getFriendsThunkCreator(pageNumber,this.props.pageSize)
   }
 
   render() {
@@ -58,7 +56,7 @@ let mapStatetoProps = (state:AppStateType):MapStateProps => {
       friendsData:getfriends(state),
       pageSize: getPageSize(state),
       totalUsersCount: getTotalFriendsCount(state),
-      currentPage: getCurrentPage(state),
+      currentPage: getCurrentPage(state),   
       isFetching:getIsFetching(state),
       followingInProgres:getFollowingInProgres(state)
     }
@@ -68,6 +66,6 @@ let mapStatetoProps = (state:AppStateType):MapStateProps => {
 
 export default compose<PropsType>(
   
-  connect<MapStateProps,MapDispatchProps,OwnPropsType,AppStateType>(mapStatetoProps,{unfollow,follow,toggleFollowingInProgres,getFriends}),
+  connect<MapStateProps,MapDispatchProps,OwnPropsType,AppStateType>(mapStatetoProps,{unfollow,follow,getFriendsThunkCreator}),
     WithAuthNavigate
 )(FriendsContainer)

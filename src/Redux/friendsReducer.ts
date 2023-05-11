@@ -33,7 +33,7 @@ type InitialStateType=typeof initialState
         return {...state,totalUsersCount:action.totalUsersCount}
       case "friendsReducer/TOGGLE-IS-FETCHING": 
         return {...state,isFetching:action.isFetching}
-      case "friendsReducer/FOLLOWING-IN-PROGRESS": 
+      case "friendsReducer/TOGGLE-FOLLOWING-IN-PROGRESS": 
         return {...state,followingInProgres:action.isFetching
           ?[...state.followingInProgres,action.userId]
           :state.followingInProgres.filter(id=>id!==action.userId)}
@@ -69,7 +69,7 @@ export const actions = {
     isFetching
   }as const),
   toggleFollowingInProgres:(isFetching:boolean,userId:number) => ({
-    type: 'friendsReducer/FOLLOWING-IN-PROGRESS',
+    type: 'friendsReducer/TOGGLE-FOLLOWING-IN-PROGRESS',
     isFetching,
     userId
   }as const)
