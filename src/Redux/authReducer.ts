@@ -1,7 +1,9 @@
 import { ResultCodesWithCaptchaEnum } from './../Api/Api';
 
 import { stopSubmit } from "redux-form";
-import { ResultCodesEnum, authAPI, securityAPI } from "../Api/Api";
+import { ResultCodesEnum } from "../Api/Api";
+import { authAPI } from '../Api/AuthApi';
+import { securityAPI } from '../Api/SecuirityApi';
 
 const setAuthUserDataConst = 'authReducer/SET-AUTH-USER-DATA"'
 const toggleIsFetchingConst='authReducer/TOGGLE-IS-FETCHING'

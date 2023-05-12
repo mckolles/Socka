@@ -1,10 +1,11 @@
 
 import { Dispatch } from "redux";
-import { usersAPI } from "../Api/Api";
+
 import { updateObjectInArray } from "../components/Common/Utils/Object-helpers";
 import { FriendsDataType } from "../Types/types";
 import { AppStateType, InferActionsTypes } from "./reduxStore";
 import { ThunkAction } from "redux-thunk";
+import { friendsApi } from "../Api/FriendsApi";
 
 let initialState = {
     friendsData: [] as Array<FriendsDataType>,
@@ -74,16 +75,17 @@ export const actions = {
     userId
   }as const)
 }
-type ActionsTypes=InferActionsTypes<typeof actions >
 
-
+  type ActionsTypes=InferActionsTypes<typeof actions >
   type DispatchType = Dispatch<ActionsTypes>
   type GetStateType=()=>AppStateType
   type ThunkType=ThunkAction<Promise<void>,AppStateType,unknown,ActionsTypes>
-   export const getFriendsThunkCreator=(currentPage:number,pageSize:number) =>{
-  return async(dispatch:DispatchType,getState:GetStateType)=>{
-   dispatch (actions.toggleIsFetching(true))
-    let response=await usersAPI.getUsers(currentPage,pageSize)
+
+
+export const getFriendsThunkCreator=(currentPage:number,pageSize:number) =>{
+    return async(dispatch:DispatchType,getState:GetStateType)=>{
+    dispatch (actions.toggleIsFetching(true))
+    let response=await friendsApi.getUsers(currentPage,pageSize)
     dispatch(actions.setCurrentPage(currentPage))
     dispatch (actions.toggleIsFetching(false))    
     dispatch (actions.setFriends(response.items ))
@@ -104,12 +106,12 @@ const followUnfollowFlow=async(dispatch:DispatchType,friendId:number,apiMethod:a
 
 export const follow=(friendId:number):ThunkType =>{
   return async(dispatch:DispatchType)=>{
-    followUnfollowFlow(dispatch,friendId,usersAPI.followFriendAPI.bind(usersAPI),actions.followSucess)
+    followUnfollowFlow(dispatch,friendId,friendsApi.followFriendAPI.bind(friendsApi),actions.followSucess)
   }}
 
 export const unfollow=(friendId:number):ThunkType =>{
   return async(dispatch:DispatchType)=>{
-    followUnfollowFlow(dispatch,friendId,usersAPI.unfollowFriendAPI.bind(usersAPI),actions.unFollowSucess)
+    followUnfollowFlow(dispatch,friendId,friendsApi.unfollowFriendAPI.bind(friendsApi),actions.unFollowSucess)
   }}
 
 
