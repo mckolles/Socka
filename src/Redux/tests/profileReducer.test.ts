@@ -1,4 +1,5 @@
-import profileReducer, { addPost, deletePost } from "../profileReducer";
+
+import profileReducer, { actions } from "../profileReducer";
 
 let state = {
   posts: [
@@ -9,19 +10,22 @@ let state = {
       text: "lorem ipsum dolor sit amet, consectetur adipiscing",
       image:
         "https://sun9-49.userapi.com/impg/qSLuFyG2PoXIJWHi5vuUom481lPU_olynB9u8Q/Ta4Q0Yh4-ec.jpg?size=176x215&quality=95&sign=aac022efdebdf0144d3a10e9f5f557c4&type=album",
-      id: "1",
+      id: 1,
     },
   ],
+  profile: null,
+  status: "" ,    
+  moreInfoMod:false as boolean
 };
 
-let actionAdd = addPost("asdadada");
-let actionDelete = deletePost(1);
+let actionAdd = actions.addPost("asdadada");
+let actionDelete = actions.deletePost(1);
 
 
 
 test("Length posts should be incremented", () => {
 let newState = profileReducer(state, actionAdd)
-  expect(newState.posts.length).toBe(2);
+  expect(newState.posts.length).toBe(3);
 });
 
 test("Text should be correct", () => {

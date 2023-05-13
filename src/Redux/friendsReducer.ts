@@ -1,10 +1,8 @@
 
 import { Dispatch } from "redux";
-
 import { updateObjectInArray } from "../components/Common/Utils/Object-helpers";
 import { FriendsDataType } from "../Types/types";
-import { AppStateType, InferActionsTypes } from "./reduxStore";
-import { ThunkAction } from "redux-thunk";
+import { AppStateType, BaseThunkType, InferActionsTypes } from "./reduxStore";
 import { friendsApi } from "../Api/FriendsApi";
 
 let initialState = {
@@ -79,7 +77,7 @@ export const actions = {
   type ActionsTypes=InferActionsTypes<typeof actions >
   type DispatchType = Dispatch<ActionsTypes>
   type GetStateType=()=>AppStateType
-  type ThunkType=ThunkAction<Promise<void>,AppStateType,unknown,ActionsTypes>
+  type ThunkType=BaseThunkType<ActionsTypes>
 
 
 export const getFriendsThunkCreator=(currentPage:number,pageSize:number) =>{

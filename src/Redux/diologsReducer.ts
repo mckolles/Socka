@@ -1,8 +1,5 @@
-type DialogDataType ={
-  name:string,
-  id:number,
-  message:string
-}
+import { InferActionsTypes } from "./reduxStore";
+
 let initialState = {
   diologsData: [
     { name: "Sveta", id: 1, message: "Hi" },
@@ -13,13 +10,9 @@ let initialState = {
   ] as Array<DialogDataType>
 };
 
- type initialStateType=typeof initialState
-
-const addDialogTextAreaConst='diologsReducer/ADD-DIALOGS-TEXTAREA'
-
-const diologsReducer = (state = initialState, action:any):initialStateType => {
+const diologsReducer = (state = initialState, action:ActionsTypes):initialStateType => {
   switch (action.type) {
-    case addDialogTextAreaConst: {
+    case 'diologsReducer/ADD-DIALOGS-TEXTAREA': {
       let body=action.newMessageBody
       return{
         ...state,
@@ -35,14 +28,20 @@ const diologsReducer = (state = initialState, action:any):initialStateType => {
   }
 };
 
-type addDiaolgsACType={
-  type:typeof addDialogTextAreaConst,
-  newMessageBody:string
+
+export const actions={
+  addDiaolgsAC:(newMessageBody:string) => ({
+    type: 'diologsReducer/ADD-DIALOGS-TEXTAREA',
+    newMessageBody
+  } as const)
 }
 
-export const addDiaolgsAC = (newMessageBody:string):addDiaolgsACType => ({
-  type: addDialogTextAreaConst,
-  newMessageBody
-});
+type initialStateType=typeof initialState
+type ActionsTypes=InferActionsTypes<typeof actions >
+type DialogDataType ={
+  name:string,
+  id:number,
+  message:string
+}
 
 export default diologsReducer;

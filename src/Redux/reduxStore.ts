@@ -1,5 +1,5 @@
 
-import { applyMiddleware, combineReducers, compose, legacy_createStore as createStore} from "redux";    
+import { Action, applyMiddleware, combineReducers, compose, legacy_createStore as createStore} from "redux";    
 import diologsReducer from "./diologsReducer";
 import profileReducer from "./profileReducer";
 import friendsReducer from "./friendsReducer";
@@ -7,6 +7,7 @@ import authReducer from "./authReducer";
 import thunkMiddleware from "redux-thunk"
 import { reducer as formReducer } from "redux-form"
 import appReducer from "./appReducer";
+import { ThunkAction } from "redux-thunk";
 
 type RootReducerType= typeof rootReducer
 export type AppStateType=ReturnType<RootReducerType>
@@ -14,6 +15,8 @@ export type AppStateType=ReturnType<RootReducerType>
 type PropertiesTypes<T>=T extends {[key:string]:infer U}?U:never
 
 export type InferActionsTypes<T extends {[key:string]:(...args:any[])=>any}> =ReturnType<PropertiesTypes<T>>
+
+export type BaseThunkType<A extends Action,R=Promise<void>>=ThunkAction<R,AppStateType,unknown,A>
 
 let rootReducer=combineReducers({
     profilePage:profileReducer,
