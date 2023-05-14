@@ -3,24 +3,18 @@ import { actions } from "../../Redux/diologsReducer";
 import Dialogs from "./Dialogs";
 import { WithAuthNavigate } from "../../HOC/WithAuthNavigate";
 import { compose } from "redux";
+import { AppStateType } from "../../Redux/reduxStore";
 
-let mapStatetoProps = (state) => {
+let mapStatetoProps = (state:AppStateType) => {
 return {
   dialogsPage:state.dialogsPage
 }
 }
-let mapDispatchtoProps = (dispatch) => {
-  return {
-    sendSms: (newMessageBody) => {
-      dispatch(actions.addDiaolgsAC(newMessageBody));
-    },
-  };
-};
 
 
 export default 
 compose(
-  connect(mapStatetoProps, mapDispatchtoProps),
+  connect(mapStatetoProps, {actions}),
   WithAuthNavigate
 )(Dialogs)
 

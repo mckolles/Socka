@@ -1,12 +1,11 @@
 import React from "react";
 import s from "./Dialogs.module.css";
 import { NavLink } from "react-router-dom";
-import ava from "../Profile/profile-avatar.jpg";
 import { Field, reduxForm, } from "redux-form";
 import { Textarea } from "../Common/Utils/FormControls";
 import { maxLengthCreator, requiredField } from "../Common/Utils/Validators/Validator";
 
-
+const ava: string = "../Profile/profile-avatar.jpg";
 const maxLength10=maxLengthCreator(10)
 
 const DialogsItems = (props) => {
@@ -61,5 +60,7 @@ const AddMessageForm=(props)=>{
 }
 
 const AddMessageFormRedux=reduxForm({form:'dialogAddMessageForm'})(AddMessageForm)
+
+type OwnPropsType={}
 
 export default Dialogs;
