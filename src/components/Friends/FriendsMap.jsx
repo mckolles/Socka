@@ -1,6 +1,7 @@
-import React from "react"
+
 import { NavLink } from "react-router-dom"
 import s from "../Friends/Friends.module.css"
+
 
  export const FriendsMap=(props)=>{
     return props.friendsData.map((f) => (

@@ -11,7 +11,7 @@ let initialState = {
     totalUsersCount: 150,
     currentPage:1,
     isFetching: true,
-    followingInProgres: []as Array<number>  //aaray of friends id
+    followingInProgres: []as Array<number>  //Array of friends id
 }
 type InitialStateType=typeof initialState
 
@@ -20,7 +20,7 @@ type InitialStateType=typeof initialState
   const friendsReducer = (state = initialState, action:ActionsTypes):InitialStateType => {
 
     switch (action.type) {
-      case "friendsReducer/FOLLOW-FRIEND": 
+      case 'friendsReducer/FOLLOW-FRIEND': 
         return {...state,friendsData:updateObjectInArray(state.friendsData,action.userId,'id',{followed:true})}
       case "friendsReducer/UNFOLLOW-FRIEND": 
         return {...state,friendsData:updateObjectInArray(state.friendsData,action.userId,'id',{followed:false})}
@@ -95,8 +95,9 @@ const followUnfollowFlow=async(dispatch:DispatchType,friendId:number,apiMethod:a
   dispatch (actions.toggleFollowingInProgres(true,friendId))
   let response=await apiMethod(friendId)
   dispatch (actions.toggleFollowingInProgres(false,friendId))
-  if (response.data.resultCode === 0){
+  if (response.resultCode === 0){
     return dispatch(actionCreator(friendId)) 
+
   }
  
 } 
