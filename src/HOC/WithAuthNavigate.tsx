@@ -1,8 +1,11 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
+import { AppStateType } from "../Redux/reduxStore";
 
-
+type WithAuthNavigateType={
+  
+}
 
 export const WithAuthNavigate=(Component) => {
     class NavigateComponent extends React.Component{
@@ -11,7 +14,7 @@ export const WithAuthNavigate=(Component) => {
             return <Component {...this.props} />
     }
 }
-    let mapStatetoPropsFornavigate = (state) => {
+    let mapStatetoPropsFornavigate = (state:AppStateType) => {
     return {
       isAuth: state.auth.isAuth
     }

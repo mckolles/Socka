@@ -1,26 +1,32 @@
-// Импорты тут
 
 import React,{Suspense, lazy} from "react";
 import "./App.css";
-import Nav from "./components/Nav/Nav";
 import {HashRouter, Route, Routes } from "react-router-dom";
 import { withRouter } from "./components/Profile/ProfileContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
 import MyProfile from "./components/Profile/MyProfile";
 import Login from "./components/Login/Login";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import {initializeApp} from "./Redux/appReducer"
 import Preloader from "./components/Common/Preloader/Preloader";
+import { AppStateType } from "./Redux/reduxStore";
+
 const DialogsContainer=lazy(()=>import ('./components/Dialogs/DiologsContainer'))
 const ProfileContainer=lazy(()=>import ('./components/Profile/ProfileContainer'))
 
+type MapStateToPropsType={
+  initialized:boolean
 
+}
+
+type MapDispatchToPropsType={
+  
+}
 
 // Основнная компонента
-class App extends React.Component  {
-  catchAllUnhandledErrors=(promiseRejectionEvent)=>{
+class App extends React.Component<MapStateToPropsType>  {
+  catchAllUnhandledErrors=(e:PromiseRejectionEvent)=>{
     alert('Something went wrong')
   }
   componentDidMount() {
@@ -68,7 +74,7 @@ class App extends React.Component  {
 }
 }
 
-const mapStateToProps = (state) =>({
+const mapStateToProps = (state:AppStateType) =>({
   initialized:state.app.initialized
 })
 
@@ -80,7 +86,8 @@ export default compose(
 
 
 
-let findNaturalNumber=(startInterval,endInterval)=>{
+
+let findNaturalNumber=(startInterval:number,endInterval:number)=>{
   let resultArray=[]
   if(endInterval>startInterval&&startInterval>=0){
     nextNumber:

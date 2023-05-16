@@ -36,7 +36,7 @@ export const actions={
   } as const)
 }
 
-type initialStateType=typeof initialState
+export type initialStateType=typeof initialState
 type ActionsTypes=InferActionsTypes<typeof actions >
 type DialogDataType ={
   name:string,

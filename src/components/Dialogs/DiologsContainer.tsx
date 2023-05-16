@@ -14,7 +14,7 @@ return {
 
 export default 
 compose(
-  connect(mapStatetoProps, {actions}),
+  connect(mapStatetoProps,{ sendSms:actions.addDiaolgsAC}),
   WithAuthNavigate
 )(Dialogs)
 
