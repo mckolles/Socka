@@ -11,7 +11,7 @@ import { compose } from "redux";
 export function withRouter(ProfileContainer){ return(props)=>
   { const match = {params: useParams()}; return <ProfileContainer {...props} match = {match}/> } }
 
-export class ProfileContainer extends React.Component {
+ class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId=this.props.match.params.userId
     if (!userId) {

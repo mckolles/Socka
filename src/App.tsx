@@ -3,7 +3,6 @@ import React,{Suspense, lazy} from "react";
 import "./App.css";
 import {HashRouter, Route, Routes } from "react-router-dom";
 import { withRouter } from "./components/Profile/ProfileContainer";
-import FriendsContainer from "./components/Friends/FriendsContainer";
 import MyProfile from "./components/Profile/MyProfile";
 import Login from "./components/Login/Login";
 import { compose } from "redux";
@@ -11,9 +10,16 @@ import { connect } from "react-redux";
 import {initializeApp} from "./Redux/appReducer"
 import Preloader from "./components/Common/Preloader/Preloader";
 import { AppStateType } from "./Redux/reduxStore";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import Nav from "./components/Nav/Nav";
+import FriendsContainer from "./components/Friends/FriendsContainer";
+
+
+
 
 const DialogsContainer=lazy(()=>import ('./components/Dialogs/DiologsContainer'))
 const ProfileContainer=lazy(()=>import ('./components/Profile/ProfileContainer'))
+
 
 type MapStateToPropsType={
   initialized:boolean
@@ -21,11 +27,11 @@ type MapStateToPropsType={
 }
 
 type MapDispatchToPropsType={
-  
+  initializeApp:()=>Promise<void>
 }
 
 // Основнная компонента
-class App extends React.Component<MapStateToPropsType>  {
+class App extends React.Component<MapStateToPropsType&MapDispatchToPropsType>  {
   catchAllUnhandledErrors=(e:PromiseRejectionEvent)=>{
     alert('Something went wrong')
   }
@@ -53,11 +59,9 @@ class App extends React.Component<MapStateToPropsType>  {
           <Route path="/Profile/:userId" element={<ProfileContainer />}/>
           <Route path="/Profile" element={<MyProfile />}/>
           <Route path="/Dialogs" element={<DialogsContainer />}/>
-          <Route path="/News" element={<DialogsContainer />} />
-          <Route path="/Music" element={<DialogsContainer />} />
-          <Route path="/Settings" element={<DialogsContainer />} />
           <Route path="/Friends" element={<FriendsContainer />} />
           <Route path="/Login" element={<Login />} />
+          
           <Route
       path="*"
       element={

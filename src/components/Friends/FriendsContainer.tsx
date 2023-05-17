@@ -68,4 +68,4 @@ export default compose<PropsType>(
   
   connect<MapStateProps,MapDispatchProps,OwnPropsType,AppStateType>(mapStatetoProps,{unfollow,follow,getFriendsThunkCreator}),
     WithAuthNavigate
-)(FriendsContainer)
+)(FriendsContainer) 

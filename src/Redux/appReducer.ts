@@ -6,10 +6,9 @@ let initialState = {
       initialized: false
 }
 
-
 export type InitialStateType = typeof initialState
 type ActionsTypes=InferActionsTypes<typeof actions>
-type ThunkType=BaseThunkType<ActionsTypes,>
+type ThunkType=BaseThunkType<ActionsTypes>
 
   const appReducer = (state:InitialStateType = initialState, action:ActionsTypes):InitialStateType => {
 
@@ -30,16 +29,12 @@ type ThunkType=BaseThunkType<ActionsTypes,>
     initializedSuccess:()=>({type: 'appReducer/SET-INITIALIZED'}as const)
   }
 
-  export const initializeApp = ():ThunkType =>(dispatch)=> {  
-    
-    let promise=dispatch(getAuthUserData())
-    promise.then(()=>{
-      dispatch(actions.initializedSuccess())
-    })
+  export const initializeApp = ():ThunkType =>async(dispatch)=> {  
+    await dispatch(getAuthUserData());
+    dispatch(actions.initializedSuccess());
         
   }
 
-  
- 
+
   
   export default appReducer;

@@ -3,11 +3,12 @@ import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { AppStateType } from "../Redux/reduxStore";
 
-type WithAuthNavigateType={
+type PropsFromRedux = {
+  isAuth: boolean;
+};
   
-}
 
-export const WithAuthNavigate=(Component) => {
+export const WithAuthNavigate=(Component:React.ComponentType<PropsFromRedux>): React.ComponentType => {
     class NavigateComponent extends React.Component{
         render(){
             if(!this.props.isAuth) return <Navigate to={'/Login'} />
