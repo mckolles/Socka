@@ -5,8 +5,7 @@ import s from "./Paginator.module.css"
   totalItemsCount:number,
   pageSize:number,
   portionSize:number,
-  currentPage:number,
-  onPageChanged:(pageNumber:number)=>void
+  currentPage:number
 }
 export const Paginator:React.FC<PropsType>=(props)=>{
 
@@ -27,7 +26,7 @@ return <div className={s.paginator}>
     {portionNumber>1 &&<button onClick={()=>{setPortionNumber(portionNumber-1)}}>{arrowBack}</button> }
     {pages.filter(p=>p>=leftPortionPageNumber&&p<=rightPortionPageNumber).map((p)=>{ 
     return <span key={p} className={props.currentPage===p?s.selectedPage:""}
-    onClick={(e)=>{props.onPageChanged(p)}}>{p}</span> 
+>{p}</span> 
     })}
     {portionCount>portionNumber&&<button onClick={()=>{setPortionNumber(portionNumber+1)}}>{arrowForward}</button>}
       </div>

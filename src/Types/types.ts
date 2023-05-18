@@ -33,5 +33,6 @@ export type PostType={
     name:string
     status:string
     photos:PhotosType
+    followed:boolean
   }
   

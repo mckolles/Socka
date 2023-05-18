@@ -12,13 +12,10 @@ import Preloader from "./components/Common/Preloader/Preloader";
 import { AppStateType } from "./Redux/reduxStore";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Nav from "./components/Nav/Nav";
-import FriendsContainer from "./components/Friends/FriendsContainer";
-
-
-
 
 const DialogsContainer=lazy(()=>import ('./components/Dialogs/DiologsContainer'))
 const ProfileContainer=lazy(()=>import ('./components/Profile/ProfileContainer'))
+const FriendsContainer=lazy(()=>import ('./components/Friends/FriendsContainer'))
 
 
 type MapStateToPropsType={
@@ -59,9 +56,8 @@ class App extends React.Component<MapStateToPropsType&MapDispatchToPropsType>  {
           <Route path="/Profile/:userId" element={<ProfileContainer />}/>
           <Route path="/Profile" element={<MyProfile />}/>
           <Route path="/Dialogs" element={<DialogsContainer />}/>
-          <Route path="/Friends" element={<FriendsContainer />} />
+          <Route path="/Friends" element={<FriendsContainer  />} />
           <Route path="/Login" element={<Login />} />
-          
           <Route
       path="*"
       element={

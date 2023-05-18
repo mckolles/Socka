@@ -6,22 +6,25 @@ import { AppStateType } from "../Redux/reduxStore";
 type PropsFromRedux = {
   isAuth: boolean;
 };
-  
 
-export const WithAuthNavigate=(Component:React.ComponentType<PropsFromRedux>): React.ComponentType => {
-    class NavigateComponent extends React.Component{
-        render(){
-            if(!this.props.isAuth) return <Navigate to={'/Login'} />
-            return <Component {...this.props} />
-    }
-}
-    let mapStatetoPropsFornavigate = (state:AppStateType) => {
-    return {
-      isAuth: state.auth.isAuth
+export const WithAuthNavigate = (
+  Component: React.FC<any>
+): React.ComponentType => {
+  class NavigateComponent extends React.Component<PropsFromRedux> {
+    render() {
+      if (!this.props.isAuth) return <Navigate to={'/Login'} />;
+      return <Component {...this.props} />;
     }
   }
-  
-  let ConnectedNavigateComponent=connect(mapStatetoPropsFornavigate)(NavigateComponent)
-  
-    return ConnectedNavigateComponent
-}
+
+  const mapStateToProps = (state: AppStateType) => {
+    return {
+      isAuth: state.auth.isAuth
+    };
+  }
+
+  const ConnectedNavigateComponent = connect(mapStateToProps)(NavigateComponent);
+
+  return ConnectedNavigateComponent;
+};
+
