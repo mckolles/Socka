@@ -114,6 +114,6 @@ export const saveProfile = (profile:ProfileType):ThunkType => async(dispatch,get
 
 type InitialStateType=typeof initialState
 type ActionsTypes=InferActionsTypes<typeof actions >
-type ThunkType=BaseThunkType<ActionsTypes|ReturnType<typeof stopSubmit>>
+export type ThunkType=BaseThunkType<ActionsTypes|ReturnType<typeof stopSubmit>>
 
 export default profileReducer;

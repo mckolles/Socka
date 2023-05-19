@@ -8,16 +8,13 @@ import { PropsType } from "./FriendsContainer";
 let Friends:React.FC<PropsType> =(props)=>{
     return <div>
             <Paginator 
-            totalUsersCount={props.totalUsersCount}
+            totalItemsCount={props.totalUsersCount}
             pageSize={props.pageSize} 
             currentPage={props.currentPage}
+            onPageChanged={props.onPageChanged} 
             portionSize={5}
             />
-            <FriendsMap       
-            friendsData={props.friendsData}
-            followingInProgres={props.followingInProgres}
-            follow={props.follow}
-            unfollow={props.unfollow}
+            <FriendsMap {...props}
             />
             </div>
 }

@@ -91,6 +91,7 @@ export const getFriendsThunkCreator=(currentPage:number,pageSize:number) =>{
 }
 }
 
+
 const followUnfollowFlow=async(dispatch:DispatchType,friendId:number,apiMethod:any,actionCreator:(userId:number)=>ActionsTypes) => {
   dispatch (actions.toggleFollowingInProgres(true,friendId))
   let response=await apiMethod(friendId)

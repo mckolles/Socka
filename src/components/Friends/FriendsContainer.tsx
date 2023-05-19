@@ -9,6 +9,7 @@ import { FriendsDataType } from "../../Types/types";
 import { AppStateType } from "../../Redux/reduxStore";
 import { follow, unfollow, getFriendsThunkCreator } from "../../Redux/friendsReducer";
 
+
 type MapStateProps = {
   currentPage: number;
   pageSize: number;
@@ -16,19 +17,23 @@ type MapStateProps = {
   totalUsersCount: number;
   friendsData: Array<FriendsDataType>;
   followingInProgres: Array<number>;
+  
 };
 
 type MapDispatchProps = {
   follow: (friendId: number) => void;
   unfollow: (friendId: number) => void;
   getFriendsThunkCreator: (currentPage: number, pageSize: number) => void;
+ 
 };
 
-type OwnPropsType = {};
+type OwnPropsType = {
+  onPageChanged:(pageNumber:number)=>void
+};
 
 export type PropsType = MapStateProps & MapDispatchProps & OwnPropsType;
 
-class FriendsContainer extends React.Component<PropsType> {
+export class FriendsContainer extends React.Component<PropsType> {
   componentDidMount() {
     this.props.getFriendsThunkCreator(this.props.currentPage, this.props.pageSize);
   }
@@ -42,15 +47,7 @@ class FriendsContainer extends React.Component<PropsType> {
       <>
         {this.props.isFetching ? <Preloader /> : null}
         {!this.props.isFetching ? (
-          <Friends
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            currentPage={this.props.currentPage}
-            friendsData={this.props.friendsData}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-            followingInProgres={this.props.followingInProgres}
-            isFetching={this.props.isFetching} // Добавлено свойство isFetching
+          <Friends {...this.props} onPageChanged={this.onPageChanged}
           />
         ) : null}
       </>
@@ -65,7 +62,7 @@ let mapStateToProps = (state: AppStateType): MapStateProps => {
     totalUsersCount: getTotalFriendsCount(state),
     currentPage: getCurrentPage(state),
     isFetching: getIsFetching(state),
-    followingInProgres: getFollowingInProgres(state),
+    followingInProgres: getFollowingInProgres(state)
   };
 };
 
@@ -73,7 +70,7 @@ export default compose<ComponentType>(
   connect<MapStateProps, MapDispatchProps, OwnPropsType, AppStateType>(mapStateToProps, {
     unfollow,
     follow,
-    getFriendsThunkCreator,
+    getFriendsThunkCreator
   }),
   WithAuthNavigate
 )(FriendsContainer);

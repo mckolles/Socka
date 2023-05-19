@@ -1,11 +1,27 @@
 import React from "react";
 import s from "./MyPosts.module.css";
+import { PostType } from "../../../Types/types";
 
-const MyPost =React.memo ((props) => {
+
+type MyPostMapStatePropsType={
+  avaSrc:string|null,
+  name:string|null,
+  text:string,
+  image:string
+}
+
+
+
+
+type MyPostPropsType=MyPostMapStatePropsType
+
+const MyPost:React.FC<MyPostPropsType> =React.memo ((props) => {
+  const avaSrc = props.avaSrc !== null ? props.avaSrc : undefined;
+  
   return (
     <div className={s.postsWrapper}>
       <div className={s.ava}>
-        <img src={props.avaSrc} alt="1"></img>
+        <img src={avaSrc} alt="1"></img>
         <div className={s.authorName}>
           <p>{props.name}</p>
         </div>
@@ -20,7 +36,15 @@ const MyPost =React.memo ((props) => {
   );
 })
 
-const MyPosts = React.memo((props) => {
+type MapStatePropsTypeMyPosts={
+  posts:Array<PostType>,
+  onFriendPage:boolean
+}
+
+
+type PropsTypeMyPosts=MapStatePropsTypeMyPosts
+
+const MyPosts:React.FC<PropsTypeMyPosts> = React.memo((props) => {
   
   let postsComponent = props.posts.map((p) => (
     <MyPost avaSrc={p.avasrc} name={p.name} text={p.text} image={p.image} key={p.id} />

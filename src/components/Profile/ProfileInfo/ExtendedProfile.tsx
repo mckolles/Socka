@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { EditProfileModFormReduxForm } from "./EditProfileMod";
 import s from "./ExtendedProfile.module.css"
+import { ProfileType } from "../../../Types/types";
+
+type ExtendedProfileProps={
+    profile:ProfileType,    
+    myProfile:boolean, 
+    saveProfile:(profile: ProfileType) => Promise<void>,
+}
 
 
-export const ExtendedProfile=React.memo(({profile,myProfile,saveProfile})=>{
+export const ExtendedProfile:React.FC<ExtendedProfileProps>=React.memo(({profile,myProfile,saveProfile})=>{
     let [editMode,setEditMode]=useState(false)
-    const onSubmit=(formData)=>{
+    const onSubmit=(formData:ProfileType)=>{
         saveProfile(formData).then(()=>{setEditMode(false)})
     }
    

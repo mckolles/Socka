@@ -5,6 +5,7 @@ import React from "react";
 import { useParams} from "react-router-dom";
 import { WithAuthNavigate } from "../../HOC/WithAuthNavigate";
 import { compose } from "redux";
+import { AppStateType } from "../../Redux/reduxStore";
 
 
 
@@ -26,7 +27,7 @@ export function withRouter(ProfileContainer){ return(props)=>
   }
 }
 
-let mapStatetoProps = (state) => {  
+let mapStatetoProps = (state:AppStateType) => {  
   return {
     profilePage:state.profilePage,
     status:state.profilePage.status,
