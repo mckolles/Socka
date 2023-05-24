@@ -38,13 +38,10 @@ const MyPost:React.FC<MyPostPropsType> =React.memo ((props) => {
 
 type MapStatePropsTypeMyPosts={
   posts:Array<PostType>,
-  onFriendPage:boolean
+  onFriendPage?:boolean
 }
 
-
-type PropsTypeMyPosts=MapStatePropsTypeMyPosts
-
-const MyPosts:React.FC<PropsTypeMyPosts> = React.memo((props) => {
+const MyPosts:React.FC<MapStatePropsTypeMyPosts> = React.memo((props) => {
   
   let postsComponent = props.posts.map((p) => (
     <MyPost avaSrc={p.avasrc} name={p.name} text={p.text} image={p.image} key={p.id} />

@@ -1,5 +1,6 @@
 import React from "react";
-import ProfileContainer from "./ProfileContainer";
+import ProfileContainer  from "./ProfileContainer";
+
 
 const MyProfile=()=>{
   return (

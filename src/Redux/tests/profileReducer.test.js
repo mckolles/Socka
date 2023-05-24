@@ -15,7 +15,7 @@ let state = {
   ],
   profile: null,
   status: "" ,    
-  moreInfoMod:false as boolean
+  moreInfoMod:false 
 };
 
 let actionAdd = actions.addPost("asdadada");

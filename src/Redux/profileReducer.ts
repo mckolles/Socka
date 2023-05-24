@@ -9,7 +9,7 @@ let initialState = {
   posts: [] as Array<PostType>,
   profile: null as ProfileType|null,
   status: "" ,    
-  moreInfoMod:false as boolean
+  isMoreInfoMod:false as boolean
 };
 
 let idTextNumber=0
@@ -53,7 +53,7 @@ const profileReducer = (state = initialState, action:ActionsTypes):InitialStateT
       return {...state, profile:{...state.profile,photos:action.photos }as ProfileType}
   }
     case 'profileReducer/SET-MORE-INFO-MOD': {
-      return {...state, moreInfoMod:action.boolean}
+      return {...state, isMoreInfoMod:action.boolean}
   }
     default:
       return state;
@@ -66,7 +66,7 @@ export const actions={
   setStatus:(status:string) => ({ type: 'profileReducer/SET-STATUS', status } as const),
   deletePost:(postID:number) => ({ type: 'profileReducer/DELETE-POST', postID } as const),
   savePhotoSuccess:(photos:PhotosType) => ({ type: 'profileReducer/SAVE-PHOTO-SUCCESS', photos }) as const,
-  moreInfoMod:(boolean:boolean) => ({ type: 'profileReducer/SET-MORE-INFO-MOD', boolean } as const)
+  setMoreInfoMod:(boolean:boolean) => ({ type: 'profileReducer/SET-MORE-INFO-MOD', boolean } as const)
 }
 
 
@@ -95,7 +95,7 @@ export const savePhoto = (file:File):ThunkType => async(dispatch) => {
 };
 export const saveProfile = (profile:ProfileType):ThunkType => async(dispatch,getState) => {
   const userId=getState().auth.id 
-  const data=await ProfileAPI.saveProfile(profile,)
+  const data=await ProfileAPI.saveProfile(profile)
     if (data.resultCode === 0) {
       if(userId!=null){
         dispatch(getProfile(userId));
@@ -106,7 +106,7 @@ export const saveProfile = (profile:ProfileType):ThunkType => async(dispatch,get
   }
     else{
         dispatch(stopSubmit("EditProfile",{_error:data.messages[0]}))
-        return Promise.reject(data.messages[0])
+        return Promise.reject(data.messages[0]) 
     }
     
 };

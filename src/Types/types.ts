@@ -25,7 +25,8 @@ export type PostType={
     lookingForAJobDescription:string,
     fullName:string,
     contacts:ContactsType,
-    photos:PhotosType
+    photos:PhotosType,
+    aboutMe:string
   }
 
   export type FriendsDataType={

@@ -4,21 +4,15 @@ import { Input, Textarea } from "../../Common/Utils/FormControls";
 import s from "./ExtendedProfile.module.css";
 import { ProfileType } from "../../../Types/types";
 
-type FormValuesType = {
-  fullName: string;
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  aboutMe: string; 
-  };
 
 
-type PropsType = {
+
+export type PropsType = {
   profile: ProfileType;
-  error: string | null;
-  handleSubmit: (values: FormValuesType) => void;
+  handleSubmit: (values: ProfileType) => void;
 };
 
-const EditProfileModForm: React.FC<InjectedFormProps<FormValuesType, PropsType> & PropsType> = React.memo(
+const EditProfileModForm: React.FC<InjectedFormProps<ProfileType, PropsType> & PropsType> = React.memo(
   ({ profile, handleSubmit, error }) => {
     return (
       <form onSubmit={handleSubmit}>
@@ -60,6 +54,6 @@ const EditProfileModForm: React.FC<InjectedFormProps<FormValuesType, PropsType> 
   }
 );
 
-export const EditProfileModFormReduxForm = reduxForm<FormValuesType, PropsType>({
+export const EditProfileModFormReduxForm = reduxForm<ProfileType, PropsType>({
   form: "EditProfile",
 })(EditProfileModForm);

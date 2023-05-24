@@ -3,29 +3,41 @@ import { EditProfileModFormReduxForm } from "./EditProfileMod";
 import s from "./ExtendedProfile.module.css"
 import { ProfileType } from "../../../Types/types";
 
+
 type ExtendedProfileProps={
     profile:ProfileType,    
-    myProfile:boolean, 
-    saveProfile:(profile: ProfileType) => Promise<void>,
+    isMyProfile:boolean, 
+    saveProfile:(profile: ProfileType) => Promise<any>
 }
 
 
-export const ExtendedProfile:React.FC<ExtendedProfileProps>=React.memo(({profile,myProfile,saveProfile})=>{
+export const ExtendedProfile:React.FC<ExtendedProfileProps>=React.memo(({profile,isMyProfile,saveProfile})=>{
     let [editMode,setEditMode]=useState(false)
-    const onSubmit=(formData:ProfileType)=>{
-        saveProfile(formData).then(()=>{setEditMode(false)})
-    }
+    const handleSubmit = (formData: ProfileType) => {
+       
+
+      }
    
     return (
         <div className={s.profileData}>
-            {myProfile&&!editMode&&<button onClick={()=>setEditMode(true)}>Edit</button>}
+            {isMyProfile&&!editMode&&<button onClick={()=>setEditMode(true)}>Edit</button>}
             {editMode?<EditProfileModFormReduxForm initialValues={profile}  
-            onSubmit={onSubmit}  profile={profile}/>:<ProfileData profile={profile} />}
+            handleSubmit={handleSubmit} profile={profile}/>:<ProfileData profile={profile} />}
         </div>
     )
 })
 
-const ProfileData=React.memo(({profile})=>{
+type ProfileDataType={
+    profile:{
+        lookingForAJob: boolean;
+        lookingForAJobDescription: string;
+        fullName: string;
+        contacts: {[key: string]: string | null}
+        aboutMe: string;
+    },  
+}
+
+const ProfileData:React.FC<ProfileDataType>=React.memo(({profile})=>{
     return <><div><b>Fullname:{profile.fullName}</b></div> 
     <div><b>Looking for a job:{profile.lookingForAJob?' Yes':' no'}</b></div>
      {profile.lookingForAJob&&
@@ -40,6 +52,12 @@ const ProfileData=React.memo(({profile})=>{
      </>
 })
 
-export const Contact=React.memo(({contactTitle,contactValue})=>{
-    return <div><b>{contactTitle}:{contactValue}</b></div>
-})
+type ContactProps = {
+    contactTitle: string;
+    contactValue: string | null;
+  };
+  
+  export const Contact: React.FC<ContactProps> = React.memo(({ contactTitle, contactValue }) => {
+    return <div><b>{contactTitle}: {contactValue}</b></div>;
+  });
+  
