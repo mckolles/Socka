@@ -5,6 +5,7 @@ import { Field, reduxForm, InjectedFormProps } from "redux-form";
 import { Textarea } from "../Common/Utils/FormControls";
 import { maxLengthCreator, requiredField } from "../Common/Utils/Validators/Validator";
 import { initialStateType } from "../../Redux/diologsReducer";
+import axios, { AxiosResponse } from "axios";
 
 const ava: "https://sun9-69.userapi.com/impg/oBT2IlqS59892ar9zWMRqvlYBTyxj_Ke-FqHYQ/GSx7MixfTCY.jpg?size=750x750&quality=96&sign=4cd064a9bb5033aadc23ec0f9a0cbb5d&type=album" = "https://sun9-69.userapi.com/impg/oBT2IlqS59892ar9zWMRqvlYBTyxj_Ke-FqHYQ/GSx7MixfTCY.jpg?size=750x750&quality=96&sign=4cd064a9bb5033aadc23ec0f9a0cbb5d&type=album";
 const maxLength10 = maxLengthCreator(50);
@@ -68,10 +69,27 @@ const Dialogs: React.FC<DialogsProps> = (props) => {
   let addNewMessage = (values: AddMessageFormValues) => {
     props.sendSms(values.newMessageBody);
   };
+  const sendMessage = async (): Promise<void> => {
+    const url = `	
+    https://api.green-api.com/waInstance/1101824662/sendMessage/5950d0ef9d704fbb9cbd67ffe5d1a171fa9218f6a7b5435b87`;
+  
+    const data = {
+      chatId: '',
+      phoneNumber: '+79019018316',
+      message: 'Заебалооооо',
+    };
+  
+    try {
+      const response: AxiosResponse = await axios.post(url, data);
+      console.log(response.data); // Обработка успешного ответа
+    } catch (error) {
+      console.error(error); // Обработка ошибки
+    }
+  };
 
   return (
     <div className={s.wrapper}>
-      <AddMessageFormRedux onSubmit={addNewMessage} />
+      <AddMessageFormRedux onSubmit={sendMessage} />
       {dialog}
     </div>
   );
