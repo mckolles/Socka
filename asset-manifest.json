@@ -1,25 +1,28 @@
 {
   "files": {
-    "main.css": "/Socka/static/css/main.ed1605fb.css",
-    "main.js": "/Socka/static/js/main.526e72c4.js",
-    "static/css/965.2ecad71d.chunk.css": "/Socka/static/css/965.2ecad71d.chunk.css",
-    "static/js/965.5fe6c3c0.chunk.js": "/Socka/static/js/965.5fe6c3c0.chunk.js",
+    "main.css": "/Socka/static/css/main.b4d737c4.css",
+    "main.js": "/Socka/static/js/main.3522f33a.js",
+    "static/css/287.c8eb0172.chunk.css": "/Socka/static/css/287.c8eb0172.chunk.css",
+    "static/js/287.0a660293.chunk.js": "/Socka/static/js/287.0a660293.chunk.js",
+    "static/css/305.b5846260.chunk.css": "/Socka/static/css/305.b5846260.chunk.css",
+    "static/js/305.227e032c.chunk.js": "/Socka/static/js/305.227e032c.chunk.js",
     "static/js/787.28cb0dcd.chunk.js": "/Socka/static/js/787.28cb0dcd.chunk.js",
-    "static/media/profile-avatar.jpg": "/Socka/static/media/profile-avatar.cfb0b6c8ceba55b4f54e.jpg",
     "static/media/dialogs-icon.png": "/Socka/static/media/dialogs-icon.1aa1211a8a09a56214d3.png",
     "static/media/friends-icon.png": "/Socka/static/media/friends-icon.207dc717e910eab99707.png",
     "static/media/profile-icon.png": "/Socka/static/media/profile-icon.496e1232cae60c48359a.png",
     "static/media/logo-icon.jpg": "/Socka/static/media/logo-icon.1b8f4d8e461558330c45.jpg",
     "static/media/Settings.gif": "/Socka/static/media/Settings.9acc60d8e2990105d71d.gif",
     "index.html": "/Socka/index.html",
-    "main.ed1605fb.css.map": "/Socka/static/css/main.ed1605fb.css.map",
-    "main.526e72c4.js.map": "/Socka/static/js/main.526e72c4.js.map",
-    "965.2ecad71d.chunk.css.map": "/Socka/static/css/965.2ecad71d.chunk.css.map",
-    "965.5fe6c3c0.chunk.js.map": "/Socka/static/js/965.5fe6c3c0.chunk.js.map",
+    "main.b4d737c4.css.map": "/Socka/static/css/main.b4d737c4.css.map",
+    "main.3522f33a.js.map": "/Socka/static/js/main.3522f33a.js.map",
+    "287.c8eb0172.chunk.css.map": "/Socka/static/css/287.c8eb0172.chunk.css.map",
+    "287.0a660293.chunk.js.map": "/Socka/static/js/287.0a660293.chunk.js.map",
+    "305.b5846260.chunk.css.map": "/Socka/static/css/305.b5846260.chunk.css.map",
+    "305.227e032c.chunk.js.map": "/Socka/static/js/305.227e032c.chunk.js.map",
     "787.28cb0dcd.chunk.js.map": "/Socka/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ed1605fb.css",
-    "static/js/main.526e72c4.js"
+    "static/css/main.b4d737c4.css",
+    "static/js/main.3522f33a.js"
   ]
 }
