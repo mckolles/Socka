@@ -13,7 +13,7 @@ let initialState = {
     isFetching: true,
     followingInProgres: []as Array<number>  //Array of friends id
 }
-type InitialStateType=typeof initialState
+export type InitialStateType=typeof initialState
 
 
 
