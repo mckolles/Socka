@@ -7,7 +7,8 @@ import { WithAuthNavigate } from "../../HOC/WithAuthNavigate";
 import { getCurrentPage, getfriends, getPageSize, getTotalFriendsCount, getFollowingInProgres, getIsFetching } from "../../Redux/friendsSelectors";
 import { FriendsDataType } from "../../Types/types";
 import { AppStateType } from "../../Redux/reduxStore";
-import { follow, unfollow, getFriendsThunkCreator } from "../../Redux/friendsReducer";
+import { follow, unfollow, getFriendsThunkCreator, FilterType } from "../../Redux/friendsReducer";
+
 
 
 type MapStateProps = {
@@ -23,31 +24,44 @@ type MapStateProps = {
 type MapDispatchProps = {
   follow: (friendId: number) => void;
   unfollow: (friendId: number) => void;
-  getFriendsThunkCreator: (currentPage: number, pageSize: number) => void;
+  getFriendsThunkCreator: (currentPage: number, pageSize: number,filter:FilterType) => void;
+  
  
 };
 
 type OwnPropsType = {
-  onPageChanged:(pageNumber:number)=>void
+  onPageChanged:(pageNumber:number)=>void,
+  onFilterChanged:(filter: FilterType) => void
+  
 };
 
 export type PropsType = MapStateProps & MapDispatchProps & OwnPropsType;
 
 export class FriendsContainer extends React.Component<PropsType> {
   componentDidMount() {
-    this.props.getFriendsThunkCreator(this.props.currentPage, this.props.pageSize);
+    this.props.getFriendsThunkCreator(this.props.currentPage, this.props.pageSize, {
+      term: '',
+      friend: null
+  });
   }
 
   onPageChanged = (pageNumber: number) => {
-    this.props.getFriendsThunkCreator(pageNumber, this.props.pageSize);
+    this.props.getFriendsThunkCreator(pageNumber, this.props.pageSize, {
+      term: '',
+      friend: null
+  });
   }
+
+  onFilterChanged = (filter: FilterType) => {
+    this.props.getFriendsThunkCreator(1, this.props.pageSize, filter)
+}
 
   render() {
     return (
       <>
         {this.props.isFetching ? <Preloader /> : null}
         {!this.props.isFetching ? (
-          <Friends {...this.props} onPageChanged={this.onPageChanged}
+          <Friends {...this.props} 
           />
         ) : null}
       </>

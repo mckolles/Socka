@@ -11,8 +11,13 @@ let initialState = {
     totalUsersCount: 150,
     currentPage:1,
     isFetching: true,
-    followingInProgres: []as Array<number>  //Array of friends id
+    followingInProgres: []as Array<number>,  //Array of friends id
+    filter: {
+      term: '',
+      friend: null as null | boolean
+  }
 }
+
 export type InitialStateType=typeof initialState
 
 
@@ -36,6 +41,9 @@ export type InitialStateType=typeof initialState
         return {...state,followingInProgres:action.isFetching
           ?[...state.followingInProgres,action.userId]
           :state.followingInProgres.filter(id=>id!==action.userId)}
+      case 'frirendsReducer/SET-FILTER': {
+            return {...state, filter: action.payload}
+        }
 
       default:
         return state;
@@ -71,19 +79,25 @@ export const actions = {
     type: 'friendsReducer/TOGGLE-FOLLOWING-IN-PROGRESS',
     isFetching,
     userId
-  }as const)
+  }as const),
+  setFilter: (filter: FilterType) => ({
+    type: 'frirendsReducer/SET-FILTER',
+    payload: filter
+  } as const)
+  
 }
 
   type ActionsTypes=InferActionsTypes<typeof actions >
   type DispatchType = Dispatch<ActionsTypes>
   type GetStateType=()=>AppStateType
   type ThunkType=BaseThunkType<ActionsTypes>
+  export type FilterType = typeof initialState.filter
 
 
-export const getFriendsThunkCreator=(currentPage:number,pageSize:number) =>{
+export const getFriendsThunkCreator=(currentPage:number,pageSize:number, filter: FilterType) =>{
     return async(dispatch:DispatchType,getState:GetStateType)=>{
     dispatch (actions.toggleIsFetching(true))
-    let response=await friendsApi.getUsers(currentPage,pageSize)
+    let response=await friendsApi.getUsers(currentPage,pageSize,filter.term, filter.friend)
     dispatch(actions.setCurrentPage(currentPage))
     dispatch (actions.toggleIsFetching(false))    
     dispatch (actions.setFriends(response.items ))
@@ -98,11 +112,10 @@ const followUnfollowFlow=async(dispatch:DispatchType,friendId:number,apiMethod:a
   dispatch (actions.toggleFollowingInProgres(false,friendId))
   if (response.resultCode === 0){
     return dispatch(actionCreator(friendId)) 
-
   }
  
 } 
-     
+
 
 export const follow=(friendId:number):ThunkType =>{
   return async(dispatch:DispatchType)=>{

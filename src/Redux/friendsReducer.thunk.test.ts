@@ -38,6 +38,7 @@ test('success follow thunk', async () => {
     expect(dispatchMock).toHaveBeenNthCalledWith(1, actions.toggleFollowingInProgres(true, 1));
     expect(dispatchMock).toHaveBeenNthCalledWith(2, actions.followSucess(1));
     expect(dispatchMock).toHaveBeenNthCalledWith(3, actions.toggleFollowingInProgres(false, 1));
+
   });
   
   test('success unfollow thunk', async () => {
@@ -47,9 +48,10 @@ test('success follow thunk', async () => {
   
     await thunk(dispatchMock, getStateMock, {});
   
-    expect(dispatchMock).toBeCalledTimes(3);
+    expect(dispatchMock).toBeCalledTimes(3); 
     expect(dispatchMock).toHaveBeenNthCalledWith(1, actions.toggleFollowingInProgres(true, 1));
     expect(dispatchMock).toHaveBeenNthCalledWith(2, actions.unFollowSucess(1));
     expect(dispatchMock).toHaveBeenNthCalledWith(3, actions.toggleFollowingInProgres(false, 1));
+
   });
   
