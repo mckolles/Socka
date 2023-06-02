@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Friends from "./Friends";
 import Preloader from "../Common/Preloader/Preloader";
 import {
@@ -10,16 +10,17 @@ import {
 } from "../../Redux/friendsSelectors";
 import { getFriendsThunkCreator } from "../../Redux/friendsReducer";
 
+
 const FriendsContainer = () => {
   const currentPage = useSelector(getCurrentPage);
   const pageSize = useSelector(getPageSize);
   const isFetching = useSelector(getIsFetching);
   const filter = useSelector(getUsersFilter)
+  const dispatch=useDispatch()
 
   useEffect(() => {
-    getFriendsThunkCreator(currentPage, pageSize,filter);
-  }, [currentPage, pageSize,filter]);
-
+    dispatch(getFriendsThunkCreator(currentPage, pageSize,filter));
+  }, [currentPage, pageSize,filter, dispatch]);
   return (
     <>
       {isFetching ? <Preloader /> : null}
