@@ -1,11 +1,18 @@
 import { NavLink } from "react-router-dom";
 import s from "../Friends/Friends.module.css";
-import { PropsType } from "./FriendsContainer";
+import {useSelector } from "react-redux";
+import { getFollowingInProgres, getfriends } from "../../Redux/friendsSelectors";
+import { follow, unfollow } from "../../Redux/friendsReducer";
 
-export const FriendsMap: React.FC<PropsType> = (props) => {
+export const FriendsMap: React.FC = () => {
+  const friendsData= useSelector(getfriends)
+  const followingInProgres=useSelector(getFollowingInProgres)
+  
+
+
   return (
     <>
-      {props.friendsData.map((f) => (
+      {friendsData.map((f) => (
         <div key={f.id}>
           <span>
             <div>
@@ -24,20 +31,20 @@ export const FriendsMap: React.FC<PropsType> = (props) => {
             <div>
               {f.followed ? (
                 <button
-                  disabled={props.followingInProgres.some((id) => id === f.id)}
+                  disabled={followingInProgres.some((id) => id === f.id)}
                   className={s.buttons}
                   onClick={() => {
-                    props.unfollow(f.id);
+                    unfollow(f.id);
                   }}
                 >
                   Unfollow
                 </button>
               ) : (
                 <button
-                  disabled={props.followingInProgres.some((id) => id === f.id)}
+                  disabled={followingInProgres.some((id) => id === f.id)}
                   className={s.buttons}
                   onClick={() => {
-                    props.follow(f.id);
+                    follow(f.id);
                   }}
                 >
                   Follow

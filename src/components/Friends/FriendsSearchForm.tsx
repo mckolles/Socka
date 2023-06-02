@@ -1,8 +1,8 @@
 import {Field, Form, Formik} from 'formik'
 import React from 'react'
-import {FilterType} from '../../Redux/friendsReducer'
-import {useSelector} from 'react-redux'
-import {getUsersFilter} from '../../Redux/friendsSelectors'
+import {FilterType, getFriendsThunkCreator} from '../../Redux/friendsReducer'
+import { useSelector} from 'react-redux'
+import {getPageSize, getUsersFilter} from '../../Redux/friendsSelectors'
 
 const usersSearchFormValidate = (values: any) => {
     const errors = {}
@@ -16,19 +16,23 @@ type FormType = {
     friend: 'true' | 'false' | 'null'
 }
 
-type PropsType = {
-    onFilterChanged: (filter: FilterType) => void
-}
 
-export const FriendsSearchForm: React.FC<PropsType> = React.memo((props) => {
+
+export const FriendsSearchForm: React.FC = React.memo((props) => {
     const filter = useSelector(getUsersFilter)
+    const pageSize= useSelector(getPageSize)
+    
+    const onFilterChanged = (filter: FilterType) => {
+        getFriendsThunkCreator(1, pageSize, filter)
+    }
+    
     const submit = (values: FormType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
         const filter: FilterType = {
             term: values.term,
             friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
         }
 
-        props.onFilterChanged(filter)
+        onFilterChanged(filter)
         setSubmitting(false)
     }
 
