@@ -61,7 +61,7 @@ export class FriendsContainer extends React.Component<PropsType> {
       <>
         {this.props.isFetching ? <Preloader /> : null}
         {!this.props.isFetching ? (
-          <Friends {...this.props} onPageChanged={this.props.onPageChanged} onFilterChanged={this.props.onFilterChanged}
+          <Friends {...this.props} onPageChanged={this.onPageChanged} onFilterChanged={this.onFilterChanged}
           />
         ) : null}
       </>
