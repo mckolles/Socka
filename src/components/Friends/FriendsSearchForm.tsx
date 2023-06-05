@@ -3,6 +3,8 @@ import React from 'react'
 import {FilterType, getFriendsThunkCreator} from '../../Redux/friendsReducer'
 import { useDispatch, useSelector} from 'react-redux'
 import {getPageSize, getUsersFilter} from '../../Redux/componentsSelectors'
+import { AppStateType } from '../../Redux/reduxStore'
+import { ThunkDispatch } from "redux-thunk";
 
 const usersSearchFormValidate = (values: any) => {
     const errors = {}
@@ -21,10 +23,9 @@ type FormType = {
 export const FriendsSearchForm: React.FC = React.memo((props) => {
     const filter = useSelector(getUsersFilter)
     const pageSize= useSelector(getPageSize)
-    const dispatch=useDispatch()
+    const dispatch: ThunkDispatch<AppStateType, undefined, any> = useDispatch();
     
     const onFilterChanged = (filter: FilterType) => {
-        //@ts-ignore
         dispatch(getFriendsThunkCreator(1, pageSize, filter))
     }
     
@@ -33,7 +34,6 @@ export const FriendsSearchForm: React.FC = React.memo((props) => {
             term: values.term,
             friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
         }
-        //@ts-ignore
         dispatch(onFilterChanged(filter))
         setSubmitting(false)
     }

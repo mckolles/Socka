@@ -7,6 +7,8 @@ import { login } from "../../Redux/authReducer";
 import { Navigate } from "react-router-dom";
 import s from "../Common/Utils/FormControls.module.css"
 import { getCaptchaUrl, getIsAuth } from "../../Redux/componentsSelectors";
+import { ThunkDispatch } from "redux-thunk";
+import { AppStateType } from "../../Redux/reduxStore";
 
 
 type LoginFormOwnProps={
@@ -52,9 +54,9 @@ const Login:React.FC=()=> {
     const isAuth=useSelector(getIsAuth)
     const captchaUrl=useSelector(getCaptchaUrl)
 
-    const dispatch=useDispatch()
+    const dispatch: ThunkDispatch<AppStateType, undefined, any> = useDispatch();
     const onSubmit = (formData:FormDataType) => {
-        //@ts-ignore
+        
         dispatch(login(formData.email,formData.password,formData.rememberMe,formData.captcha))
     }
     if(isAuth){

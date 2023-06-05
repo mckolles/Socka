@@ -3,11 +3,13 @@ import s from "../Friends/Friends.module.css";
 import {useDispatch, useSelector } from "react-redux";
 import { getFollowingInProgres, getfriends } from "../../Redux/componentsSelectors";
 import { follow, unfollow } from "../../Redux/friendsReducer";
+import { ThunkDispatch } from "redux-thunk";
+import { AppStateType } from "../../Redux/reduxStore";
 
 export const FriendsMap: React.FC = () => {
   const friendsData= useSelector(getfriends)
   const followingInProgres=useSelector(getFollowingInProgres)
-  const dispatch=useDispatch()
+  const dispatch: ThunkDispatch<AppStateType, undefined, any> = useDispatch();
   
   
 
@@ -36,7 +38,6 @@ export const FriendsMap: React.FC = () => {
                   disabled={followingInProgres.some((id) => id === f.id)}
                   className={s.buttons}
                   onClick={() => {
-                    //@ts-ignore
                     dispatch(unfollow(f.id));
                   }}
                 >
@@ -47,7 +48,6 @@ export const FriendsMap: React.FC = () => {
                   disabled={followingInProgres.some((id) => id === f.id)}
                   className={s.buttons}
                   onClick={() => {
-                     //@ts-ignore
                     dispatch(follow(f.id))
                   }}
                 >

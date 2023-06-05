@@ -9,6 +9,8 @@ import {
   getUsersFilter,
 } from "../../Redux/componentsSelectors";
 import { getFriendsThunkCreator } from "../../Redux/friendsReducer";
+import { AppStateType } from "../../Redux/reduxStore";
+import { ThunkDispatch } from "redux-thunk";
 
 
 const FriendsContainer = () => {
@@ -16,10 +18,9 @@ const FriendsContainer = () => {
   const pageSize = useSelector(getPageSize);
   const isFetching = useSelector(getIsFetching);
   const filter = useSelector(getUsersFilter)
-  const dispatch=useDispatch()
+  const dispatch: ThunkDispatch<AppStateType, undefined, any> = useDispatch();
 
   useEffect(() => {
-    //@ts-ignore
     dispatch(getFriendsThunkCreator(currentPage, pageSize,filter));
   }, [currentPage, pageSize,filter, dispatch]);
   return (
