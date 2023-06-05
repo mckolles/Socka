@@ -1,12 +1,14 @@
 import { NavLink } from "react-router-dom";
 import s from "../Friends/Friends.module.css";
-import {useSelector } from "react-redux";
-import { getFollowingInProgres, getfriends } from "../../Redux/friendsSelectors";
+import {useDispatch, useSelector } from "react-redux";
+import { getFollowingInProgres, getfriends } from "../../Redux/componentsSelectors";
 import { follow, unfollow } from "../../Redux/friendsReducer";
 
 export const FriendsMap: React.FC = () => {
   const friendsData= useSelector(getfriends)
   const followingInProgres=useSelector(getFollowingInProgres)
+  const dispatch=useDispatch()
+  
   
 
 
@@ -34,7 +36,8 @@ export const FriendsMap: React.FC = () => {
                   disabled={followingInProgres.some((id) => id === f.id)}
                   className={s.buttons}
                   onClick={() => {
-                    unfollow(f.id);
+                    //@ts-ignore
+                    dispatch(unfollow(f.id));
                   }}
                 >
                   Unfollow
@@ -44,7 +47,8 @@ export const FriendsMap: React.FC = () => {
                   disabled={followingInProgres.some((id) => id === f.id)}
                   className={s.buttons}
                   onClick={() => {
-                    follow(f.id);
+                     //@ts-ignore
+                    dispatch(follow(f.id))
                   }}
                 >
                   Follow

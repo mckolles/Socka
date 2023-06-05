@@ -7,7 +7,7 @@ import {
   getIsFetching,
   getPageSize,
   getUsersFilter,
-} from "../../Redux/friendsSelectors";
+} from "../../Redux/componentsSelectors";
 import { getFriendsThunkCreator } from "../../Redux/friendsReducer";
 
 
@@ -19,6 +19,7 @@ const FriendsContainer = () => {
   const dispatch=useDispatch()
 
   useEffect(() => {
+    //@ts-ignore
     dispatch(getFriendsThunkCreator(currentPage, pageSize,filter));
   }, [currentPage, pageSize,filter, dispatch]);
   return (

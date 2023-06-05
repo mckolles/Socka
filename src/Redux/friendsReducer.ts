@@ -97,8 +97,9 @@ export const actions = {
 export const getFriendsThunkCreator=(currentPage:number,pageSize:number, filter: FilterType) =>{
     return async(dispatch:DispatchType,getState:GetStateType)=>{
     dispatch (actions.toggleIsFetching(true))
-    let response=await friendsApi.getUsers(currentPage,pageSize,filter.term, filter.friend)
     dispatch(actions.setCurrentPage(currentPage))
+   
+    let response=await friendsApi.getUsers(currentPage,pageSize,filter.term, filter.friend)
     dispatch (actions.toggleIsFetching(false))    
     dispatch (actions.setFriends(response.items ))
     dispatch (actions.setTotalUsersCount(response.totalCount)) 

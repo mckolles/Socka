@@ -22,3 +22,11 @@ export const getFollowingInProgres=(state:AppStateType)=>{
 export const getUsersFilter = (state: AppStateType) => {
     return state.friendsPage.filter;
 }
+
+
+export const getIsAuth=(state: AppStateType)=>{
+    return state.auth.isAuth;
+}
+export const getCaptchaUrl=(state: AppStateType)=>{
+    return state.auth.captchaUrl;
+}

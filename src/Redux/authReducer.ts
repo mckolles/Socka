@@ -67,7 +67,7 @@ let initialState:InitialStateType = {
       }
       else  {
         if(loginData.resultCode===ResultCodesWithCaptchaEnum.CapthaIsRequired){
-          dispatch(getCaptchaUrl())
+          dispatch(setCaptchaUrl())
         }
         let message=loginData.messages.length>0?loginData.messages[0]:"Something went wrong"
         dispatch(stopSubmit("Login",{_error:message}))
@@ -81,7 +81,7 @@ let initialState:InitialStateType = {
       }
   }
  
-  export const getCaptchaUrl = ():ThunkType =>async(dispatch)=> {
+  export const setCaptchaUrl = ():ThunkType =>async(dispatch)=> {
     const data=await securityAPI.getCaptchaUrl()
     const captchaUrl = data.url
     dispatch(actions.getCaptchaUrlSucess(captchaUrl))

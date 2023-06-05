@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react"
 import s from "./Paginator.module.css"
-import { useSelector } from "react-redux"
-import { getCurrentPage, getPageSize, getTotalFriendsCount } from "../../../Redux/friendsSelectors"
+import { useDispatch, useSelector } from "react-redux"
+import { getCurrentPage, getPageSize, getTotalFriendsCount } from "../../../Redux/componentsSelectors"
 import { getFriendsThunkCreator } from "../../../Redux/friendsReducer"
 
 
-export const Paginator:React.FC=(props)=>{
+export const Paginator:React.FC=()=>{
 
 const portionSize=5
-const  totalItemsCount= useSelector(getTotalFriendsCount)
+const totalItemsCount= useSelector(getTotalFriendsCount)
 const pageSize= useSelector(getPageSize)
 const currentPage=useSelector(getCurrentPage)
+const dispatch=useDispatch()
 
 const onPageChanged = (pageNumber: number) => {
-  getFriendsThunkCreator(pageNumber, pageSize, {
+  //@ts-ignore
+  dispatch(getFriendsThunkCreator(pageNumber, pageSize, {
     term: '',
     friend: null
-});
+}));
+
 }
 
 let pagesCount=Math.ceil(totalItemsCount/pageSize)
